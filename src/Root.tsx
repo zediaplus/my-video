@@ -2,6 +2,7 @@ import "./index.css";
 import { Composition, Folder } from "remotion";
 import { HelloWorld } from "./HelloWorld";
 import { ShippingAd } from "./ShippingAd";
+import { DialogueAd } from "./Dialogue";
 import { Logo } from "./HelloWorld/Logo";
 import { Title } from "./HelloWorld/Title";
 
@@ -10,6 +11,14 @@ import { Title } from "./HelloWorld/Title";
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition
+        id="DialogueAd"
+        component={DialogueAd}
+        durationInFrames={1800}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
       <Composition
         id="ShippingAd"
         component={ShippingAd}

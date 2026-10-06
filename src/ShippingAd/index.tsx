@@ -17,7 +17,7 @@ import "@fontsource/cairo/arabic-800.css";
 import "@fontsource/cairo/arabic-900.css";
 import "@fontsource/cairo/latin-900.css";
 
-const fontFamily = "Cairo";
+export const fontFamily = "Cairo";
 
 // Brand colours taken from the shop logo / wall banner, plus Sudan flag accents.
 export const C = {
@@ -39,7 +39,7 @@ const SAFE = { top: 220, bottom: 420, side: 80 };
 
 /* ---------------- shared pieces ---------------- */
 
-const Clip: React.FC<{
+export const Clip: React.FC<{
   from: number; // seconds into the source video
   zoom?: [number, number];
   dim?: number;
@@ -67,7 +67,7 @@ const Clip: React.FC<{
   );
 };
 
-const Photo: React.FC<{
+export const Photo: React.FC<{
   src: string;
   zoom?: [number, number];
   pan?: [number, number];
@@ -95,7 +95,7 @@ const Photo: React.FC<{
 };
 
 // Sudan flag stripe (red / white / black + green triangle) used as a recurring accent.
-const SudanStripe: React.FC<{ width?: number; delay?: number }> = ({ width = 420, delay = 0 }) => {
+export const SudanStripe: React.FC<{ width?: number; delay?: number }> = ({ width = 420, delay = 0 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const p = spring({ frame: frame - delay, fps, config: { damping: 200 } });
@@ -294,7 +294,7 @@ const Scene3: React.FC = () => (
 
 /* ---------------- scene 4: services ---------------- */
 
-const Icon: React.FC<{ kind: string }> = ({ kind }) => {
+export const Icon: React.FC<{ kind: string }> = ({ kind }) => {
   const p = { fill: "none", stroke: C.navy, strokeWidth: 5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
   const paths: Record<string, React.ReactNode> = {
     sea: (<><path {...p} d="M12 52 L20 66 H76 L86 52 Z" /><path {...p} d="M30 52 V36 H62 V52" /><path {...p} d="M44 36 V24" /><path {...p} d="M8 78 q8 -6 16 0 t16 0 t16 0 t16 0 t16 0" /></>),
@@ -475,7 +475,7 @@ const Scene6: React.FC = () => {
 
 /* ---------------- WhatsApp mark + logo badge ---------------- */
 
-const WhatsApp: React.FC<{ size: number }> = ({ size }) => (
+export const WhatsApp: React.FC<{ size: number }> = ({ size }) => (
   <svg width={size} height={size} viewBox="0 0 32 32">
     <circle cx="16" cy="16" r="16" fill="#25D366" />
     <path

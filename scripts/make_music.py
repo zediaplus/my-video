@@ -1,14 +1,17 @@
 """Generate an original 40s Sudanese-flavoured background track (royalty-free, synthesized).
 
 Pentatonic melody (Sudanese music is largely pentatonic) over a 6/8 dalooka-style
-drum pattern and a soft bass drone. Output: public/media/music.wav
+drum pattern and a soft bass drone.
+Usage: python3 scripts/make_music.py [seconds] [output.wav]  (default 40s -> public/media/music.wav)
 """
+import sys
 import wave
 
 import numpy as np
 
 SR = 44100
-DUR = 40.0
+DUR = float(sys.argv[1]) if len(sys.argv) > 1 else 40.0
+OUT = sys.argv[2] if len(sys.argv) > 2 else "public/media/music.wav"
 BPM = 104  # dotted-quarter pulse; each beat split into 3 eighths (6/8 feel)
 EIGHTH = 60 / BPM / 3
 N = int(SR * DUR)
@@ -98,9 +101,9 @@ fade[-fo:] = np.linspace(1, 0, fo)
 out *= fade
 out /= np.max(np.abs(out)) * 1.1
 
-with wave.open("public/media/music.wav", "w") as w:
+with wave.open(OUT, "w") as w:
     w.setnchannels(1)
     w.setsampwidth(2)
     w.setframerate(SR)
     w.writeframes((out * 32767).astype(np.int16).tobytes())
-print("wrote public/media/music.wav")
+print("wrote", OUT)
