@@ -447,17 +447,21 @@ const Scene6: React.FC = () => {
             style={{
               unicodeBidi: "isolate",
               fontWeight: 900,
-              fontSize: 128,
+              fontSize: 104,
               letterSpacing: 4,
               color: C.white,
               background: `linear-gradient(90deg, ${C.navy}, ${C.blue})`,
               borderRadius: 28,
-              padding: "6px 44px",
+              padding: "6px 36px",
               transform: `scale(${pulse})`,
               fontVariantNumeric: "tabular-nums",
+              display: "flex",
+              alignItems: "center",
+              gap: 26,
             }}
           >
-            0500855361
+            <WhatsApp size={84} />
+            <span>0500855361</span>
           </div>
           <div style={{ fontWeight: 700, fontSize: 46, color: C.navy, marginTop: 6 }}>شحن من القصيم إلى السودان</div>
           <div style={{ marginTop: 14 }}>
@@ -467,6 +471,72 @@ const Scene6: React.FC = () => {
       </AbsoluteFill>
     </AbsoluteFill>
   );
+};
+
+/* ---------------- WhatsApp mark + logo badge ---------------- */
+
+const WhatsApp: React.FC<{ size: number }> = ({ size }) => (
+  <svg width={size} height={size} viewBox="0 0 32 32">
+    <circle cx="16" cy="16" r="16" fill="#25D366" />
+    <path
+      fill="#fff"
+      d="M16 6.5a9.4 9.4 0 0 0-8.1 14.2L6.6 25.5l4.9-1.3A9.4 9.4 0 1 0 16 6.5zm0 17.2a7.8 7.8 0 0 1-4-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A7.8 7.8 0 1 1 16 23.7zm4.3-5.8c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.4 6.4 0 0 1-3.2-2.8c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3 2.7 2.7 0 0 0-.9 2 4.7 4.7 0 0 0 1 2.5 10.7 10.7 0 0 0 4.1 3.6c1.5.7 2.1.7 2.9.6a2.4 2.4 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z"
+    />
+  </svg>
+);
+
+// Small brand badge kept in the top corner (inside the safe area) during the middle scenes.
+const LogoBadge: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps, durationInFrames } = useVideoConfig();
+  const inP = spring({ frame, fps, config: { damping: 15 } });
+  const out = interpolate(frame, [durationInFrames - 10, durationInFrames], [1, 0], { extrapolateLeft: "clamp" });
+  return (
+    <AbsoluteFill style={{ alignItems: "flex-end", paddingTop: 110, paddingRight: SAFE.side - 20 }}>
+      <div
+        dir="rtl"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 14,
+          background: "rgba(255,255,255,.95)",
+          borderRadius: 26,
+          padding: "10px 22px 10px 14px",
+          boxShadow: "0 10px 30px rgba(0,0,0,.35)",
+          opacity: inP * out,
+          transform: `translateY(${(1 - inP) * -60}px)`,
+        }}
+      >
+        <Img src={staticFile("media/logo.jpg")} style={{ width: 120, borderRadius: 12, mixBlendMode: "multiply" }} />
+        <div style={{ fontFamily, fontWeight: 900, fontSize: 34, color: C.navy, lineHeight: 1.2 }}>
+          نسمات الفصول
+          <div style={{ fontWeight: 700, fontSize: 22, color: C.blue }}>للتغليف والشحن إلى السودان</div>
+        </div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+/* ---------------- audio ---------------- */
+
+// Voice-over lines: [start second, file]. Record each line (e.g. ElevenLabs) and save as
+// public/media/vo/1.mp3 … 6.mp3, then set VOICEOVER_READY = true.
+export const VOICEOVER_READY = false;
+const VO: [number, number][] = [
+  [0.8, 4.6],
+  [5.4, 9.6],
+  [10.6, 15.0],
+  [17.4, 27.2],
+  [28.4, 32.0],
+  [33.6, 39.0],
+];
+
+const musicVolume = (f: number) => {
+  const t = f / FPS;
+  const fadeOut = interpolate(t, [38, 40], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  if (!VOICEOVER_READY) return 0.4 * fadeOut;
+  const speaking = VO.some(([a, b]) => t > a - 0.3 && t < b + 0.3);
+  return (speaking ? 0.12 : 0.35) * fadeOut;
 };
 
 /* ---------------- timeline ---------------- */
@@ -494,9 +564,16 @@ export const ShippingAd: React.FC = () => (
         <Audio src={staticFile("media/tape.wav")} volume={0.35} />
       </Sequence>
     ))}
-    {/* Drop licensed music at public/media/music.mp3 and voiceover at public/media/voiceover.mp3, then uncomment:
-    <Audio src={staticFile("media/music.mp3")} volume={0.15} />
-    <Audio src={staticFile("media/voiceover.mp3")} />
-    */}
+    <Sequence from={s(5)} durationInFrames={s(28)}>
+      <LogoBadge />
+    </Sequence>
+    {/* Original synthesized Sudanese-style track (scripts/make_music.py), ducked under the voice. */}
+    <Audio src={staticFile("media/music.wav")} volume={musicVolume} />
+    {VOICEOVER_READY &&
+      VO.map(([a], i) => (
+        <Sequence key={`vo${i}`} from={s(a)}>
+          <Audio src={staticFile(`media/vo/${i + 1}.mp3`)} />
+        </Sequence>
+      ))}
   </AbsoluteFill>
 );
