@@ -521,14 +521,14 @@ const LogoBadge: React.FC = () => {
 
 // Voice-over lines: [start second, file]. Record each line (e.g. ElevenLabs) and save as
 // public/media/vo/1.mp3 … 6.mp3, then set VOICEOVER_READY = true.
-export const VOICEOVER_READY = false;
+export const VOICEOVER_READY = true;
 const VO: [number, number][] = [
-  [0.8, 4.6],
-  [5.4, 9.6],
-  [10.6, 15.0],
-  [17.4, 27.2],
-  [28.4, 32.0],
-  [33.6, 39.0],
+  [0.6, 4.3],
+  [5.3, 10.4],
+  [10.6, 15.3],
+  [17.4, 25.9],
+  [28.4, 32.5],
+  [33.6, 39.1],
 ];
 
 const musicVolume = (f: number) => {
