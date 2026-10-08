@@ -1,0 +1,302 @@
+{
+  "fps": 30,
+  "totalFrames": 3150,
+  "totalSeconds": 105,
+  "voiceEndsAt": 101.029,
+  "scenes": [
+    {
+      "id": "hook",
+      "start": 0,
+      "end": 14.233,
+      "voiceStart": 1.2,
+      "voiceEnd": 14.22,
+      "sourceIn": 0,
+      "sourceOut": 13.02,
+      "pauseAddedBefore": 1.2
+    },
+    {
+      "id": "brand",
+      "start": 14.233,
+      "end": 22.967,
+      "voiceStart": 15.12,
+      "voiceEnd": 22.96,
+      "sourceIn": 13.02,
+      "sourceOut": 20.86,
+      "pauseAddedBefore": 0.9
+    },
+    {
+      "id": "setup",
+      "start": 22.967,
+      "end": 34.267,
+      "voiceStart": 23.56,
+      "voiceEnd": 34.25,
+      "sourceIn": 20.86,
+      "sourceOut": 31.55,
+      "pauseAddedBefore": 0.6
+    },
+    {
+      "id": "info",
+      "start": 34.267,
+      "end": 43.433,
+      "voiceStart": 34.75,
+      "voiceEnd": 43.43,
+      "sourceIn": 31.55,
+      "sourceOut": 40.23,
+      "pauseAddedBefore": 0.5
+    },
+    {
+      "id": "photos",
+      "start": 43.433,
+      "end": 53.1,
+      "voiceStart": 44.03,
+      "voiceEnd": 53.1,
+      "sourceIn": 40.23,
+      "sourceOut": 49.3,
+      "pauseAddedBefore": 0.6
+    },
+    {
+      "id": "reviews",
+      "start": 53.1,
+      "end": 59.967,
+      "voiceStart": 53.6,
+      "voiceEnd": 59.96,
+      "sourceIn": 49.3,
+      "sourceOut": 55.66,
+      "pauseAddedBefore": 0.5
+    },
+    {
+      "id": "ads",
+      "start": 59.967,
+      "end": 71.767,
+      "voiceStart": 60.56,
+      "voiceEnd": 71.75,
+      "sourceIn": 55.66,
+      "sourceOut": 66.85,
+      "pauseAddedBefore": 0.6
+    },
+    {
+      "id": "metrics",
+      "start": 71.767,
+      "end": 80.767,
+      "voiceStart": 72.15,
+      "voiceEnd": 80.75,
+      "sourceIn": 66.85,
+      "sourceOut": 75.45,
+      "pauseAddedBefore": 0.4
+    },
+    {
+      "id": "evidence",
+      "start": 80.767,
+      "end": 88.667,
+      "voiceStart": 81.45,
+      "voiceEnd": 88.67,
+      "sourceIn": 75.45,
+      "sourceOut": 82.67,
+      "pauseAddedBefore": 0.7
+    },
+    {
+      "id": "cta",
+      "start": 88.667,
+      "end": 97.033,
+      "voiceStart": 89.37,
+      "voiceEnd": 97.04,
+      "sourceIn": 82.67,
+      "sourceOut": 90.34,
+      "pauseAddedBefore": 0.7
+    },
+    {
+      "id": "outro",
+      "start": 97.033,
+      "end": 105,
+      "voiceStart": 97.64,
+      "voiceEnd": 101.03,
+      "sourceIn": 90.34,
+      "sourceOut": 93.73,
+      "pauseAddedBefore": 0.6
+    }
+  ],
+  "captions": [
+    {
+      "start": 1.2,
+      "end": 3.27,
+      "sourceStart": 0,
+      "sourceEnd": 2.07,
+      "text": "نشاطُكَ مميّز… ولكن،"
+    },
+    {
+      "start": 3.65,
+      "end": 5.95,
+      "sourceStart": 2.45,
+      "sourceEnd": 4.75,
+      "text": "هل يجدُكَ عملاؤُكَ على خرائط جوجل؟"
+    },
+    {
+      "start": 6.43,
+      "end": 11.21,
+      "sourceStart": 5.23,
+      "sourceEnd": 10.01,
+      "text": "في هذه اللحظة، هناك مَن يبحثُ عن خدمةٍ تُقدّمُها، أو منتجٍ تبيعُه…"
+    },
+    {
+      "start": 11.7,
+      "end": 14.03,
+      "sourceStart": 10.5,
+      "sourceEnd": 12.83,
+      "text": "فهل يظهرُ نشاطُكَ بصورةٍ تليقُ به؟"
+    },
+    {
+      "start": 15.32,
+      "end": 19.22,
+      "sourceStart": 13.22,
+      "sourceEnd": 17.12,
+      "text": "في زيديا، نساعدُكَ على بناء حضورٍ واضحٍ ومتكامل،"
+    },
+    {
+      "start": 19.52,
+      "end": 22.79,
+      "sourceStart": 17.42,
+      "sourceEnd": 20.69,
+      "text": "يجعلُ التعرّفَ على نشاطِكَ والوصولَ إليكَ أسهل!"
+    },
+    {
+      "start": 23.73,
+      "end": 27.72,
+      "sourceStart": 21.03,
+      "sourceEnd": 25.02,
+      "text": "نبدأُ بإنشاء ملفِّ نشاطِكَ التجاريّ أو تحسينِ ملفِّكَ الحاليّ،"
+    },
+    {
+      "start": 28.1,
+      "end": 30.43,
+      "sourceStart": 25.4,
+      "sourceEnd": 27.73,
+      "text": "ونساعدُكَ في خطواتِ إثباتِ الملكيّة،"
+    },
+    {
+      "start": 30.72,
+      "end": 34.04,
+      "sourceStart": 28.02,
+      "sourceEnd": 31.34,
+      "text": "وضبطِ الموقعِ على الخريطة، واختيارِ التصنيفِ المناسب."
+    },
+    {
+      "start": 34.96,
+      "end": 39.44,
+      "sourceStart": 31.76,
+      "sourceEnd": 36.24,
+      "text": "ثم نرتّبُ خدماتِكَ، ووصفَ نشاطِكَ، ورقمَ التواصلِ وساعاتِ العمل…"
+    },
+    {
+      "start": 39.81,
+      "end": 43.28,
+      "sourceStart": 36.61,
+      "sourceEnd": 40.08,
+      "text": "لتكونَ المعلوماتُ التي يحتاجُها العميلُ أمامَه بوضوح."
+    },
+    {
+      "start": 44.19,
+      "end": 48.59,
+      "sourceStart": 40.39,
+      "sourceEnd": 44.79,
+      "text": "ولأنَّ الصورةَ تصنعُ الانطباعَ الأوّل، نصوّرُ مكانَكَ ومنتجاتِكَ،"
+    },
+    {
+      "start": 48.87,
+      "end": 52.93,
+      "sourceStart": 45.07,
+      "sourceEnd": 49.13,
+      "text": "ونُجهّزُ صورًا وفيديوهاتٍ ومنشوراتٍ تُبرزُ ما يميّزُكَ!"
+    },
+    {
+      "start": 53.76,
+      "end": 57.18,
+      "sourceStart": 49.46,
+      "sourceEnd": 52.88,
+      "text": "ونساعدُكَ على طلبِ تقييماتٍ حقيقيّةٍ من عملائِكَ،"
+    },
+    {
+      "start": 57.38,
+      "end": 59.8,
+      "sourceStart": 53.08,
+      "sourceEnd": 55.5,
+      "text": "والردِّ عليها باهتمامٍ واحترافيّة."
+    },
+    {
+      "start": 60.72,
+      "end": 63.56,
+      "sourceStart": 55.82,
+      "sourceEnd": 58.66,
+      "text": "وتريدُ الوصولَ إلى المزيدِ من العملاءِ المحتملين؟"
+    },
+    {
+      "start": 63.86,
+      "end": 68.5,
+      "sourceStart": 58.96,
+      "sourceEnd": 63.6,
+      "text": "نُعِدُّ ونُديرُ حملاتِ جوجل الإعلانيّةَ المؤهَّلةَ للظهورِ على الخرائط،"
+    },
+    {
+      "start": 68.74,
+      "end": 71.62,
+      "sourceStart": 63.84,
+      "sourceEnd": 66.72,
+      "text": "وفقَ أهدافِكَ ومنطقتِكَ وميزانيّتِكَ."
+    },
+    {
+      "start": 72.28,
+      "end": 74.41,
+      "sourceStart": 66.98,
+      "sourceEnd": 69.11,
+      "text": "ونتابعُ مؤشّراتِ الأداءِ المتاحة…"
+    },
+    {
+      "start": 74.72,
+      "end": 78.03,
+      "sourceStart": 69.42,
+      "sourceEnd": 72.73,
+      "text": "الظهور، وضغطاتِ الاتصال، وطلباتِ الاتّجاهات؛"
+    },
+    {
+      "start": 78.28,
+      "end": 80.61,
+      "sourceStart": 72.98,
+      "sourceEnd": 75.31,
+      "text": "لنطوّرَ العملَ بناءً على البيانات."
+    },
+    {
+      "start": 81.58,
+      "end": 85.43,
+      "sourceStart": 75.58,
+      "sourceEnd": 79.43,
+      "text": "وهذه نماذجُ من صورِنا ومساهماتِنا على خرائط جوجل…"
+    },
+    {
+      "start": 85.74,
+      "end": 88.48,
+      "sourceStart": 79.74,
+      "sourceEnd": 82.48,
+      "text": "بمشاهداتِها الفعليّةِ كما تظهرُ في الحساب."
+    },
+    {
+      "start": 89.57,
+      "end": 92.77,
+      "sourceStart": 82.87,
+      "sourceEnd": 86.07,
+      "text": "وراءَ نشاطِكَ جهدٌ يستحقُّ أن يراهُ الناس."
+    },
+    {
+      "start": 93.03,
+      "end": 96.9,
+      "sourceStart": 86.33,
+      "sourceEnd": 90.2,
+      "text": "أرسلْ لنا رابطَ نشاطِكَ الآن، ولنحدّدْ معًا فرصَ تطويرِه."
+    },
+    {
+      "start": 97.78,
+      "end": 100.78,
+      "sourceStart": 90.48,
+      "sourceEnd": 93.48,
+      "text": "زيديا… حضورٌ أوضح، ووصولٌ أسهل!"
+    }
+  ]
+}

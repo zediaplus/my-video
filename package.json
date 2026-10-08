@@ -1,0 +1,29 @@
+{
+  "name": "zedia-maps-video",
+  "version": "1.0.0",
+  "private": true,
+  "description": "إعلان زيديا لخدمات خرائط Google — Remotion",
+  "scripts": {
+    "dev": "remotion studio",
+    "render": "remotion render ZediaMapsAd out/zedia-maps-ad.mp4",
+    "still": "remotion still ZediaMapsAd out/still.png",
+    "typecheck": "tsc --noEmit",
+    "timing": "esbuild scripts/export-timing.ts --bundle --platform=node --format=esm --outfile=out/export-timing.mjs --log-level=warning && node out/export-timing.mjs",
+    "audio": "python3 scripts/generate-audio.py 105",
+    "stills": "node scripts/stills.mjs"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.534",
+    "@remotion/media-utils": "4.0.534",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "remotion": "4.0.534"
+  },
+  "devDependencies": {
+    "@fontsource/ibm-plex-sans-arabic": "5.3.0",
+    "@remotion/bundler": "4.0.534",
+    "@remotion/renderer": "4.0.534",
+    "@types/react": "19.1.8",
+    "typescript": "5.8.3"
+  }
+}
