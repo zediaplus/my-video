@@ -41,31 +41,75 @@ export const Outro: React.FC = () => {
   );
 };
 
-/** Phone number, held still from the call-to-action to the very last frame. */
+/** Final call button: green, held still from the call-to-action to the very last frame. */
 export const NumberBar: React.FC = () => {
   const frame = useCurrentFrame();
-  const p = ease(frame, 0, 14);
+  const p = pop(frame, 0, 14);
+  const pulse = (frame % 45) / 45;
   return (
     <At x={CENTER_X} y={1250}>
+      <div style={{ position: 'relative', opacity: Math.min(1, p * 1.5), transform: `scale(${mix(p, 0.7, 1)})` }}>
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            borderRadius: 70,
+            border: `4px solid ${COLORS.call}`,
+            opacity: (1 - pulse) * 0.6,
+            transform: `scale(${mix(pulse, 1, 1.18)})`,
+          }}
+        />
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 22,
+            background: `linear-gradient(180deg, #27B85A, ${COLORS.call})`,
+            borderRadius: 70,
+            padding: '16px 48px 16px 18px',
+            boxShadow: '0 24px 44px -18px rgba(30,158,74,0.65)',
+            direction: 'ltr',
+          }}
+        >
+          <div style={{ width: 92, height: 92, borderRadius: 92, background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Icon name="phone" size={50} color={COLORS.call} stroke={2.4} />
+          </div>
+          <PhoneNumber size={70} color="white" />
+        </div>
+      </div>
+    </At>
+  );
+};
+
+/** Logo + call strip pinned at the bottom from the middle of the video. */
+export const BrandBar: React.FC<{ fadeOutAt: number }> = ({ fadeOutAt }) => {
+  const frame = useCurrentFrame();
+  const p = ease(frame, 0, 20) * (1 - ease(frame, fadeOutAt, 12));
+  return (
+    <At x={CENTER_X} y={1615}>
       <div
         style={{
           opacity: p,
-          transform: `translateY(${mix(p, 24, 0)}px)`,
+          transform: `translateY(${mix(p, 40, 0)}px)`,
           display: 'flex',
           alignItems: 'center',
-          gap: 22,
-          background: COLORS.white,
-          border: `3px solid ${COLORS.blue}`,
+          gap: 26,
+          background: 'rgba(255,255,255,0.94)',
+          border: `1.5px solid ${COLORS.line}`,
           borderRadius: 60,
-          padding: '14px 44px 14px 18px',
+          padding: '10px 14px 10px 34px',
           boxShadow: SHADOW,
           direction: 'ltr',
         }}
       >
-        <div style={{ width: 84, height: 84, borderRadius: 84, background: COLORS.blue, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Icon name="phone" size={46} color="white" stroke={2.2} />
+        <Logo width={190} />
+        <div style={{ width: 2, height: 64, background: COLORS.line }} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, background: COLORS.call, borderRadius: 50, padding: '10px 26px 10px 12px' }}>
+          <div style={{ width: 58, height: 58, borderRadius: 58, background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Icon name="phone" size={32} color={COLORS.call} stroke={2.4} />
+          </div>
+          <PhoneNumber size={46} color="white" />
         </div>
-        <PhoneNumber size={66} color={COLORS.ink} />
       </div>
     </At>
   );

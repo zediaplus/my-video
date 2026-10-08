@@ -8,7 +8,7 @@ npm ci
 npm run dev                 # معاينة في Remotion Studio
 npm run render              # تصدير ثم ضبط مستوى الصوت (‎-16 LUFS‎) ← out/zedia-maps-ad-final.mp4
 npm run timing              # إعادة توليد timing.json و captions.srt
-npm run audio               # إعادة توليد الموسيقى والمؤثرات (يتطلب python3 + numpy + ffmpeg)
+npm run audio               # إعادة توليد الموسيقى (يتطلب python3 + numpy + ffmpeg)
 npm run stills -- 300 1500  # لقطات مراجعة لإطارات محددة في out/stills
 ```
 إذا تعذّر على Remotion تنزيل Chrome، فمرّر متصفحًا محليًا:
@@ -25,6 +25,6 @@ npm run stills -- 300 1500  # لقطات مراجعة لإطارات محددة 
 
 ## المواد والرخص
 - **الخط**: IBM Plex Sans Arabic بالأوزان 400 و500 و600 و700، محمّل محليًا من `public/fonts`، ورخصته SIL OFL 1.1 (`public/fonts/OFL-LICENSE.txt`). التصدير ينتظر تحميله فعليًا ولا يستبدله بخط آخر.
-- **الموسيقى والمؤثرات**: مولّدة برمجيًا من الصفر عبر `scripts/generate-audio.py` دون أي عينات خارجية، فلا تحتاج رخصة طرف ثالث.
+- **الموسيقى**: مولّدة برمجيًا من الصفر عبر `scripts/generate-audio.py` دون أي عينات خارجية، فلا تحتاج رخصة طرف ثالث. لا توجد مؤثرات صوتية (حُذفت بطلب المستخدم).
 - **التعليق الصوتي**: التسجيل الذي رفعه المستخدم (`public/audio/voiceover.mp3`).
-- **الشعار**: شعار زيديا المرفوع بعد حذف علامة «+».
+- **الشعار**: شعار زيديا كما رُفع تمامًا بلا أي تعديل (`public/brand/zedia-logo.png`).

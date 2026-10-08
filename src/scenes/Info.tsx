@@ -6,7 +6,7 @@ import { cueIn } from '../timeline';
 import { Phone, ProfileScreen } from '../components/Phone';
 import { At, CENTER_X, Headline } from '../components/ui';
 
-const PHONE_W = 470;
+const PHONE_W = 450;
 
 export const Info: React.FC = () => {
   const frame = useCurrentFrame();
@@ -19,7 +19,7 @@ export const Info: React.FC = () => {
   return (
     <AbsoluteFill>
       <Headline text={TEXT.infoTitle} start={4} y={220} size={62} />
-      <At x={CENTER_X} y={mix(zoom, 980, 880)}>
+      <At x={CENTER_X} y={mix(zoom, 960, 850)}>
         <div style={{ transform: `scale(${mix(zoom, 0.8, 1) * mix(clarity, 1, 1.04)})` }}>
           <Phone width={PHONE_W}>
             <ProfileScreen width={PHONE_W * 0.936} rows={rows} rowLabels={TEXT.infoRows} />

@@ -27,6 +27,8 @@ export const COLORS = {
   cyan: '#12B0DD',
   line: '#D5E3F5',
   highlight: '#0B7FC7',
+  call: '#1E9E4A', // green call button
+  callDeep: '#167A39',
   // limited Google accents
   gBlue: '#4285F4',
   gRed: '#EA4335',

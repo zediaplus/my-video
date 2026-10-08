@@ -47,6 +47,16 @@ export const Headline: React.FC<{ text: string; start?: number; y?: number; size
       }}
     >
       {text}
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 14 }}>
+        <div
+          style={{
+            width: 170 * ease(frame, start + 10, 22),
+            height: 8,
+            borderRadius: 8,
+            background: `linear-gradient(90deg, ${COLORS.gBlue} 0 25%, ${COLORS.gRed} 25% 50%, ${COLORS.gYellow} 50% 75%, ${COLORS.gGreen} 75%)`,
+          }}
+        />
+      </div>
     </div>
   );
 };
@@ -92,10 +102,23 @@ export const IconBadge: React.FC<{ name: IconName; color?: string; bg?: string; 
   </div>
 );
 
-/** The Zedia logo (script wordmark), with the Arabic name under it when needed. */
-export const Logo: React.FC<{ width?: number }> = ({ width = 360 }) => (
-  <Img src={staticFile(BRAND.logo)} style={{ width, display: 'block' }} />
-);
+/**
+ * The Zedia logo, used exactly as supplied. The file has wide transparent margins, so the
+ * frame is sized to the artwork's visible box (x 48–1080, y 172–932 of 1107px).
+ */
+const LOGO_FILE = 1107;
+const LOGO_BOX = { x: 48, y: 172, w: 1032, h: 760 };
+export const Logo: React.FC<{ width?: number }> = ({ width = 360 }) => {
+  const k = width / LOGO_BOX.w;
+  return (
+    <div style={{ width, height: LOGO_BOX.h * k, overflow: 'hidden', position: 'relative' }}>
+      <Img
+        src={staticFile(BRAND.logo)}
+        style={{ position: 'absolute', width: LOGO_FILE * k, left: -LOGO_BOX.x * k, top: -LOGO_BOX.y * k, display: 'block' }}
+      />
+    </div>
+  );
+};
 
 /** Phone number, always isolated as LTR inside the RTL layout. */
 export const PhoneNumber: React.FC<{ size?: number; color?: string }> = ({ size = 64, color = COLORS.ink }) => (
@@ -145,21 +168,26 @@ export const AccentDots: React.FC<{ size?: number; gap?: number }> = ({ size = 1
   </div>
 );
 
-/** Fades/scales a whole scene in and out so neighbouring scenes overlap smoothly. */
+/**
+ * Scene wrapper: soft slide/blur in, slow camera push while on screen, and a blur/scale
+ * out that overlaps the next scene so transitions flow instead of cutting.
+ */
 export const SceneShell: React.FC<{ duration: number; overlap: number; children: React.ReactNode; exitScale?: number }> = ({
   duration,
   overlap,
   children,
-  exitScale = 1.04,
+  exitScale = 1.06,
 }) => {
   const frame = useCurrentFrame();
-  const enter = ease(frame, 0, 16);
+  const enter = ease(frame, 0, 22);
   const exit = ease(frame, duration, overlap);
+  const push = mix(Math.min(1, frame / Math.max(duration, 1)), 1, 1.035);
   return (
     <AbsoluteFill
       style={{
         opacity: enter * (1 - exit),
-        transform: `scale(${mix(enter, 0.97, 1) * mix(exit, 1, exitScale)})`,
+        transform: `translateY(${mix(enter, 60, 0)}px) scale(${mix(enter, 0.94, 1) * push * mix(exit, 1, exitScale)})`,
+        filter: enter < 1 || exit > 0 ? `blur(${(1 - enter) * 10 + exit * 10}px)` : undefined,
       }}
     >
       {children}

@@ -9,7 +9,7 @@ import { ProductShot, Storefront } from '../components/illustrations';
 import { At, CENTER_X, Headline, SHADOW, arabic } from '../components/ui';
 
 const PHONE_W = 420;
-const PHONE_Y = 900;
+const PHONE_Y = 880;
 
 const VideoTile: React.FC<{ w: number }> = ({ w }) => (
   <div style={{ position: 'relative' }}>
@@ -63,12 +63,12 @@ const tileContent = (i: number, w: number) => {
 
 // Scattered tiles around the phone, at different depths (inspired by the "download" reference).
 const TILES = [
-  { x: 210, y: 610, rot: -10, depth: 1.0, label: 0, icon: 'store' as const },
-  { x: 820, y: 580, rot: 9, depth: 0.85, label: 1, icon: 'box' as const },
-  { x: 190, y: 1010, rot: 8, depth: 0.9, label: 2, icon: 'video' as const },
-  { x: 840, y: 980, rot: -8, depth: 1.0, label: 1, icon: 'box' as const },
-  { x: 260, y: 1290, rot: -5, depth: 0.8, label: 3, icon: 'post' as const },
-  { x: 780, y: 1300, rot: 6, depth: 0.85, label: 1, icon: 'box' as const },
+  { x: 210, y: 590, rot: -10, depth: 1.0, label: 0, icon: 'store' as const },
+  { x: 820, y: 570, rot: 9, depth: 0.85, label: 1, icon: 'box' as const },
+  { x: 190, y: 930, rot: 8, depth: 0.9, label: 2, icon: 'video' as const },
+  { x: 840, y: 910, rot: -8, depth: 1.0, label: 1, icon: 'box' as const },
+  { x: 250, y: 1215, rot: -5, depth: 0.8, label: 3, icon: 'post' as const },
+  { x: 790, y: 1225, rot: 6, depth: 0.85, label: 1, icon: 'box' as const },
 ];
 
 export const Photos: React.FC = () => {

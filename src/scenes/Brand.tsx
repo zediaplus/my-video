@@ -8,7 +8,7 @@ import { Phone, ProfileScreen } from '../components/Phone';
 import { At, CENTER_X, Card, Headline, Logo, arabic } from '../components/ui';
 
 const PHONE_W = 380;
-const PHONE_Y = 900;
+const PHONE_Y = 860;
 
 const FLOATERS: { icon: IconName; label: string; x: number; y: number; color: string }[] = [
   { icon: 'phone', label: 'اتصال', x: 200, y: 660, color: COLORS.gGreen },

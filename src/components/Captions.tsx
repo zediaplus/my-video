@@ -6,7 +6,8 @@ import { CAPTIONS_OUT } from '../timeline';
 import { stripHarakat } from './captionText';
 import { arabic } from './ui';
 
-const BOTTOM = SAFE.bottom + 20;
+// Sits above the logo + call bar at the bottom.
+const BOTTOM = 390;
 
 export const Captions: React.FC = () => {
   const frame = useCurrentFrame();
@@ -45,7 +46,7 @@ export const Captions: React.FC = () => {
           padding: '18px 34px 22px',
           boxShadow: '0 16px 36px -18px rgba(14,46,96,0.35)',
           textAlign: 'center',
-          fontSize: 46,
+          fontSize: 44,
           lineHeight: 1.55,
           fontWeight: 500,
           color: COLORS.ink,

@@ -1,4 +1,4 @@
-"""Synthesise the background music and UI sound effects used by the ad.
+"""Synthesise the background music used by the ad.
 
 Everything here is generated from scratch (no samples), so the output is
 original material owned by the project and needs no third-party licence.
@@ -146,63 +146,6 @@ def music(duration):
     return mix
 
 
-# ---------------------------------------------------------------- sfx
-def sfx_typing():
-    n = int(1.6 * SR)
-    out = np.zeros(n)
-    t = 0.0
-    while t < 1.45:
-        start = int(t * SR)
-        length = int(0.025 * SR)
-        click = rng.standard_normal(length) * np.exp(-np.arange(length) / SR * 260)
-        click = np.diff(np.concatenate([[0], click]))
-        out[start:start + length] += click * rng.uniform(0.25, 0.4)
-        t += rng.uniform(0.07, 0.13)
-    return to_stereo(out)
-
-
-def sfx_pop():
-    length = int(0.18 * SR)
-    t = np.arange(length) / SR
-    f = 900 * np.exp(-t * 18) + 500
-    tone = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 28) * 0.45
-    return to_stereo(tone)
-
-
-def sfx_click():
-    length = int(0.06 * SR)
-    t = np.arange(length) / SR
-    tone = np.sin(2 * np.pi * 2200 * t) * np.exp(-t * 120) * 0.35
-    noise = rng.standard_normal(length) * np.exp(-t * 300) * 0.12
-    return to_stereo(tone + noise)
-
-
-def sfx_whoosh():
-    length = int(0.8 * SR)
-    t = np.arange(length) / SR
-    noise = rng.standard_normal(length)
-    sweep = np.zeros(length)
-    acc = 0.0
-    for i in range(length):
-        cut = 0.02 + 0.25 * np.sin(np.pi * t[i] / 0.8) ** 2
-        acc = acc + cut * (noise[i] - acc)
-        sweep[i] = acc
-    sweep *= np.sin(np.pi * t / 0.8) ** 2 * 0.9
-    return np.stack([sweep * np.linspace(1.2, 0.8, length), sweep * np.linspace(0.8, 1.2, length)], axis=1)
-
-
-def sfx_chime():
-    length = int(1.8 * SR)
-    t = np.arange(length) / SR
-    out = np.zeros(length)
-    for k, note in enumerate([76, 79, 84]):
-        delay = int(k * 0.09 * SR)
-        f = midi(note)
-        seg = np.sin(2 * np.pi * f * t[: length - delay]) * np.exp(-t[: length - delay] * 3.2)
-        out[delay:] += seg * 0.18
-    return to_stereo(out, 0.1)
-
-
 if __name__ == "__main__":
     duration = float(sys.argv[1]) if len(sys.argv) > 1 else 105
     os.makedirs(OUT, exist_ok=True)
@@ -211,9 +154,4 @@ if __name__ == "__main__":
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", os.path.join(OUT, "music.wav"),
                     "-b:a", "192k", os.path.join(OUT, "music.mp3")], check=True)
     os.remove(os.path.join(OUT, "music.wav"))
-    write_wav("sfx-typing.wav", sfx_typing())
-    write_wav("sfx-pop.wav", sfx_pop())
-    write_wav("sfx-click.wav", sfx_click())
-    write_wav("sfx-whoosh.wav", sfx_whoosh())
-    write_wav("sfx-chime.wav", sfx_chime())
     print("audio written to", os.path.abspath(OUT))
