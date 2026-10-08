@@ -10,6 +10,7 @@ npm run render              # تصدير ثم ضبط مستوى الصوت (‎-
 npm run timing              # إعادة توليد timing.json و captions.srt
 npm run audio               # إعادة توليد الموسيقى (يتطلب python3 + numpy + ffmpeg)
 npm run stills -- 300 1500  # لقطات مراجعة لإطارات محددة في out/stills
+npm run poster              # بوستر 4:5 ← out/zedia-maps-poster.png (2160×2700)
 ```
 إذا تعذّر على Remotion تنزيل Chrome، فمرّر متصفحًا محليًا:
 `REMOTION_BROWSER=/path/to/headless_shell npm run render`

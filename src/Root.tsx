@@ -1,10 +1,12 @@
 import React from 'react';
-import { Composition } from 'remotion';
+import { Composition, Still } from 'remotion';
 import { VIDEO } from './config';
 import { TOTAL_FRAMES } from './timeline';
 import { ZediaVideo } from './Video';
+import { POSTER, Poster } from './poster/Poster';
 
 export const RemotionRoot: React.FC = () => (
+  <>
   <Composition
     id={VIDEO.id}
     component={ZediaVideo}
@@ -13,4 +15,6 @@ export const RemotionRoot: React.FC = () => (
     width={VIDEO.width}
     height={VIDEO.height}
   />
+  <Still id={POSTER.id} component={Poster} width={POSTER.width} height={POSTER.height} />
+  </>
 );

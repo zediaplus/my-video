@@ -7,7 +7,7 @@
     "dev": "remotion studio",
     "render": "remotion render ZediaMapsAd out/zedia-maps-ad.mp4 && npm run master",
     "master": "ffmpeg -y -loglevel error -i out/zedia-maps-ad.mp4 -c:v copy -af loudnorm=I=-16:TP=-1.5:LRA=11 -ar 48000 -c:a aac -b:a 192k -movflags +faststart out/zedia-maps-ad-final.mp4",
-    "still": "remotion still ZediaMapsAd out/still.png",
+    "poster": "remotion still ZediaMapsPoster out/zedia-maps-poster.png --scale=2",
     "typecheck": "tsc --noEmit",
     "timing": "esbuild scripts/export-timing.ts --bundle --platform=node --format=esm --outfile=out/export-timing.mjs --log-level=warning && node out/export-timing.mjs",
     "audio": "python3 scripts/generate-audio.py 105",
