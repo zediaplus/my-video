@@ -1,0 +1,14 @@
+interface:
+  display_name: إعلان زيديا لخرائط قوقل
+  short_description: إنتاج إعلان زيديا من الصور والصوت باستخدام Remotion
+  default_prompt: Use $zedia-maps-video to build the Arabic Zedia advertisement from
+    my uploaded images and voiceover.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
