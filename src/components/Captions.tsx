@@ -2,23 +2,23 @@ import React from 'react';
 import { useCurrentFrame } from 'remotion';
 import { ease, mix } from '../anim';
 import { COLORS, SAFE, VIDEO } from '../config';
-import { CAPTIONS_OUT } from '../timeline';
+import { CAPTIONS_OUT, CaptionOut } from '../timeline';
 import { stripHarakat } from './captionText';
 import { arabic } from './ui';
 
 // Sits above the logo + call bar at the bottom.
 const BOTTOM = 390;
 
-export const Captions: React.FC = () => {
+export const Captions: React.FC<{ items?: CaptionOut[]; bottom?: number }> = ({ items = CAPTIONS_OUT, bottom = BOTTOM }) => {
   const frame = useCurrentFrame();
   const t = frame / VIDEO.fps;
-  const idx = CAPTIONS_OUT.findIndex((c, i) => {
-    const next = CAPTIONS_OUT[i + 1];
+  const idx = items.findIndex((c, i) => {
+    const next = items[i + 1];
     const until = next ? Math.min(next.outStart, c.outEnd + 0.6) : c.outEnd + 0.8;
     return t >= c.outStart - 0.1 && t < until;
   });
   if (idx < 0) return null;
-  const c = CAPTIONS_OUT[idx];
+  const c = items[idx];
   const startF = (c.outStart - 0.1) * VIDEO.fps;
   const p = ease(frame, startF, 8);
   const hl = new Set((c.hl ?? []).map(stripHarakat));
@@ -29,7 +29,7 @@ export const Captions: React.FC = () => {
         position: 'absolute',
         left: SAFE.left,
         right: SAFE.right,
-        bottom: BOTTOM,
+        bottom,
         display: 'flex',
         justifyContent: 'center',
         opacity: p,

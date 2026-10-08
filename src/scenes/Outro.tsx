@@ -42,12 +42,12 @@ export const Outro: React.FC = () => {
 };
 
 /** Final call button: green, held still from the call-to-action to the very last frame. */
-export const NumberBar: React.FC = () => {
+export const NumberBar: React.FC<{ y?: number }> = ({ y = 1250 }) => {
   const frame = useCurrentFrame();
   const p = pop(frame, 0, 14);
   const pulse = (frame % 45) / 45;
   return (
-    <At x={CENTER_X} y={1250}>
+    <At x={CENTER_X} y={y}>
       <div style={{ position: 'relative', opacity: Math.min(1, p * 1.5), transform: `scale(${mix(p, 0.7, 1)})` }}>
         <div
           style={{
@@ -82,11 +82,11 @@ export const NumberBar: React.FC = () => {
 };
 
 /** Logo + call strip pinned at the bottom from the middle of the video. */
-export const BrandBar: React.FC<{ fadeOutAt: number }> = ({ fadeOutAt }) => {
+export const BrandBar: React.FC<{ fadeOutAt: number; y?: number }> = ({ fadeOutAt, y = 1615 }) => {
   const frame = useCurrentFrame();
   const p = ease(frame, 0, 20) * (1 - ease(frame, fadeOutAt, 12));
   return (
-    <At x={CENTER_X} y={1615}>
+    <At x={CENTER_X} y={y}>
       <div
         style={{
           opacity: p,

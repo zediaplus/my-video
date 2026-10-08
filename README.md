@@ -10,6 +10,7 @@ npm run render              # تصدير ثم ضبط مستوى الصوت (‎-
 npm run timing              # إعادة توليد timing.json و captions.srt
 npm run audio               # إعادة توليد الموسيقى (يتطلب python3 + numpy + ffmpeg)
 npm run stills -- 300 1500  # لقطات مراجعة لإطارات محددة في out/stills
+npm run story               # نسخة ستوري سريعة (≈38 ث) ← out/zedia-maps-story-final.mp4
 npm run poster              # بوستر 4:5 ← out/zedia-maps-poster.png (2160×2700)
 ```
 إذا تعذّر على Remotion تنزيل Chrome، فمرّر متصفحًا محليًا:
@@ -18,6 +19,9 @@ npm run poster              # بوستر 4:5 ← out/zedia-maps-poster.png (2160
 ## البنية
 - `src/config.ts`: كل ما يُعدَّل: الاسم، الرقم، الألوان، المساحة الآمنة، مقاطع الصوت والوقفات المضافة (`SECTIONS.gapBefore`)، الترجمة والكلمات المميزة، نقاط التزامن (`CUES`)، الإحصاءات الحقيقية، وعناوين المشاهد.
 - `src/timeline.ts`: يحوّل توقيت التسجيل الأصلي إلى توقيت الفيديو بعد إضافة الوقفات.
+- `src/story/Story.tsx`: نسخة الستوري (جمل كاملة من نفس التسجيل، بسرعتها الأصلية).
+- `src/poster/Poster.tsx`: البوستر.
+- `.claude/skills/zedia-video/`: مهارة تحفظ الأسلوب المعتمد وطريقة العمل للفيديوهات القادمة.
 - `src/scenes/*`: أحد عشر مشهدًا (Hook, Brand, Setup, Info, Photos, Reviews, Ads, Metrics, Evidence, Cta, Outro).
 - `src/components/*`: الهاتف، الخلفية، الترجمة، الأيقونات، والرسوم المتجهية.
 - `public/`: الصوت، الخط، الشعار، ولقطات الإثبات.

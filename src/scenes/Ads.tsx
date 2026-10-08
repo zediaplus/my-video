@@ -5,16 +5,10 @@ import { COLORS, CUES, TEXT } from '../config';
 import { cueIn } from '../timeline';
 import { Icon, IconName } from '../components/Icon';
 import { MapArt, Storefront } from '../components/illustrations';
+import { ColorRibbons } from '../components/ColorRibbons';
 import { At, CENTER_X, Card, Headline, MapPin, SHADOW, arabic } from '../components/ui';
 
-// Wide multicolour light ribbons converging on the map (flow/depth idea from the "download (1)" reference).
 const FOCUS = { x: 510, y: 800 };
-const BAND_COLORS = [COLORS.gRed, '#F57C2B', COLORS.gYellow, COLORS.gGreen, COLORS.gBlue];
-const ribbon = (side: 'left' | 'right', o: number) =>
-  side === 'left'
-    ? `M-360 ${1880 + o * 1.3} C 120 ${1640 + o * 1.1}, 260 ${1080 + o * 0.6}, ${FOCUS.x} ${FOCUS.y + o * 0.15}`
-    : `M1460 ${1560 + o * 1.3} C 1020 ${1470 + o * 1.0}, 780 ${1040 + o * 0.5}, ${FOCUS.x} ${FOCUS.y + o * 0.15}`;
-const BAND_W = 64;
 
 const CHIP_ICONS: IconName[] = ['target', 'pin', 'wallet'];
 
@@ -30,48 +24,7 @@ export const Ads: React.FC = () => {
 
   return (
     <AbsoluteFill>
-      <svg width={1080} height={1920} style={{ position: 'absolute', inset: 0, opacity: mix(trailsOut, 1, 0.55) }}>
-        <defs>
-          <filter id="ribbonGlow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="26" />
-          </filter>
-          <filter id="softLight" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="10" />
-          </filter>
-          <radialGradient id="focusGlow">
-            <stop offset="0" stopColor="#FFFFFF" stopOpacity="1" />
-            <stop offset="0.4" stopColor="#BFE3FF" stopOpacity="0.7" />
-            <stop offset="1" stopColor="#BFE3FF" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-        {(['left', 'right'] as const).map((side, si) =>
-          BAND_COLORS.map((color, ci) => {
-            const o = (ci - (BAND_COLORS.length - 1) / 2) * (BAND_W - 4);
-            const d = ribbon(side, side === 'left' ? o : -o);
-            const draw = ease(frame, c(CUES.moreClients) - 6 + si * 10 + ci * 2, 50);
-            return (
-              <g key={`${side}-${ci}`}>
-                <path d={d} stroke={color} strokeWidth={BAND_W * 1.6} fill="none" opacity={0.28} filter="url(#ribbonGlow)" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - draw} />
-                <path d={d} stroke={color} strokeWidth={BAND_W} fill="none" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - draw} opacity={0.92} />
-                {/* light travelling along the ribbon */}
-                <path
-                  d={d}
-                  stroke="#FFFFFF"
-                  strokeWidth={BAND_W * 0.8}
-                  strokeLinecap="round"
-                  fill="none"
-                  filter="url(#softLight)"
-                  pathLength={1}
-                  strokeDasharray="0.12 0.88"
-                  strokeDashoffset={-((frame + ci * 9 + si * 30) / 70)}
-                  opacity={0.5 * draw}
-                />
-              </g>
-            );
-          }),
-        )}
-        <circle cx={FOCUS.x} cy={FOCUS.y} r={mix(focus, 0, 260)} fill="url(#focusGlow)" opacity={focus * (1 - mapIn * 0.7)} />
-      </svg>
+      <ColorRibbons start={c(CUES.moreClients) - 6} focus={focus} focusFade={mapIn * 0.7} opacity={mix(trailsOut, 1, 0.55)} focusPoint={FOCUS} />
 
       <Headline text={TEXT.adsTitle} start={c(CUES.campaigns) + 6} y={220} size={56} />
 

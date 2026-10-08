@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "remotion studio",
     "render": "remotion render ZediaMapsAd out/zedia-maps-ad.mp4 && npm run master",
+    "story": "remotion render ZediaMapsStory out/zedia-maps-story.mp4 && ffmpeg -y -loglevel error -i out/zedia-maps-story.mp4 -c:v copy -af loudnorm=I=-16:TP=-1.5:LRA=11 -ar 48000 -c:a aac -b:a 192k -movflags +faststart out/zedia-maps-story-final.mp4",
     "master": "ffmpeg -y -loglevel error -i out/zedia-maps-ad.mp4 -c:v copy -af loudnorm=I=-16:TP=-1.5:LRA=11 -ar 48000 -c:a aac -b:a 192k -movflags +faststart out/zedia-maps-ad-final.mp4",
     "poster": "remotion still ZediaMapsPoster out/zedia-maps-poster.png --scale=2",
     "typecheck": "tsc --noEmit",
