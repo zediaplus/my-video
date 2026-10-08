@@ -6,7 +6,7 @@
 ```bash
 npm ci
 npm run dev                 # معاينة في Remotion Studio
-npm run render              # تصدير out/zedia-maps-ad.mp4 (H.264/AAC)
+npm run render              # تصدير ثم ضبط مستوى الصوت (‎-16 LUFS‎) ← out/zedia-maps-ad-final.mp4
 npm run timing              # إعادة توليد timing.json و captions.srt
 npm run audio               # إعادة توليد الموسيقى والمؤثرات (يتطلب python3 + numpy + ffmpeg)
 npm run stills -- 300 1500  # لقطات مراجعة لإطارات محددة في out/stills
