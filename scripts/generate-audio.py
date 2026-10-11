@@ -3,8 +3,8 @@
 Everything here is generated from scratch (no samples), so the output is
 original material owned by the project and needs no third-party licence.
 
-Usage: python3 scripts/generate-audio.py [duration_seconds]
-Writes to public/audio/.
+Usage: python3 scripts/generate-audio.py [duration] [public subdir] [bpm] [--sfx]
+Writes to public/audio/ by default.
 """
 import os
 import subprocess
@@ -60,8 +60,7 @@ def midi(n):
 
 
 # ---------------------------------------------------------------- music
-def music(duration):
-    bpm = 100
+def music(duration, bpm=100):
     beat = 60 / bpm
     bar = beat * 4
     n = int(duration * SR)
@@ -146,12 +145,73 @@ def music(duration):
     return mix
 
 
+# ---------------------------------------------------------------- sfx (soft; only used where the brief asks for them)
+def sfx_pop():
+    length = int(0.18 * SR)
+    t = np.arange(length) / SR
+    f = 900 * np.exp(-t * 18) + 500
+    tone = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 28) * 0.45
+    return to_stereo(tone)
+
+
+def sfx_ping():
+    # soft two-note notification
+    length = int(0.5 * SR)
+    t = np.arange(length) / SR
+    out = np.sin(2 * np.pi * midi(88) * t) * np.exp(-t * 9) * 0.2
+    d = int(0.08 * SR)
+    out[d:] += np.sin(2 * np.pi * midi(93) * t[: length - d]) * np.exp(-t[: length - d] * 9) * 0.2
+    return to_stereo(out)
+
+
+def sfx_click():
+    length = int(0.06 * SR)
+    t = np.arange(length) / SR
+    tone = np.sin(2 * np.pi * 2200 * t) * np.exp(-t * 120) * 0.35
+    noise = rng.standard_normal(length) * np.exp(-t * 300) * 0.12
+    return to_stereo(tone + noise)
+
+
+def sfx_whoosh():
+    length = int(0.8 * SR)
+    t = np.arange(length) / SR
+    noise = rng.standard_normal(length)
+    sweep = np.zeros(length)
+    acc = 0.0
+    for i in range(length):
+        cut = 0.02 + 0.25 * np.sin(np.pi * t[i] / 0.8) ** 2
+        acc = acc + cut * (noise[i] - acc)
+        sweep[i] = acc
+    sweep *= np.sin(np.pi * t / 0.8) ** 2 * 0.9
+    return np.stack([sweep * np.linspace(1.2, 0.8, length), sweep * np.linspace(0.8, 1.2, length)], axis=1)
+
+
+def sfx_chime():
+    length = int(1.8 * SR)
+    t = np.arange(length) / SR
+    out = np.zeros(length)
+    for k, note in enumerate([76, 79, 84]):
+        delay = int(k * 0.09 * SR)
+        f = midi(note)
+        seg = np.sin(2 * np.pi * f * t[: length - delay]) * np.exp(-t[: length - delay] * 3.2)
+        out[delay:] += seg * 0.18
+    return to_stereo(out, 0.1)
+
+
 if __name__ == "__main__":
-    duration = float(sys.argv[1]) if len(sys.argv) > 1 else 105
+    # python3 scripts/generate-audio.py [duration] [subdir under public/, default audio] [bpm] [--sfx]
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    duration = float(args[0]) if args else 105
+    if len(args) > 1:
+        OUT = os.path.join(os.path.dirname(__file__), "..", "public", args[1])
+    bpm = float(args[2]) if len(args) > 2 else 100
     os.makedirs(OUT, exist_ok=True)
-    write_wav("music.wav", music(duration))
-    # keep the repo light: encode the long music bed to MP3
+    write_wav("music.wav", music(duration, bpm))
+    # keep the repo light: encode the music bed to MP3
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", os.path.join(OUT, "music.wav"),
                     "-b:a", "192k", os.path.join(OUT, "music.mp3")], check=True)
     os.remove(os.path.join(OUT, "music.wav"))
+    if "--sfx" in sys.argv:
+        for name, fn in [("pop", sfx_pop), ("ping", sfx_ping), ("whoosh", sfx_whoosh), ("chime", sfx_chime)]:
+            write_wav(f"sfx-{name}.wav", fn())
     print("audio written to", os.path.abspath(OUT))

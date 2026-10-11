@@ -5,6 +5,7 @@ import { TOTAL_FRAMES } from './timeline';
 import { ZediaVideo } from './Video';
 import { POSTER, Poster } from './poster/Poster';
 import { STORY, T as STORY_T, ZediaStory } from './story/Story';
+import { ADS30, ZediaAds30 } from './ads30/Ads30';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -24,6 +25,7 @@ export const RemotionRoot: React.FC = () => (
     width={VIDEO.width}
     height={VIDEO.height}
   />
+  <Composition id={ADS30.id} component={ZediaAds30} durationInFrames={ADS30.frames} fps={VIDEO.fps} width={VIDEO.width} height={VIDEO.height} />
   <Still id={POSTER.id} component={Poster} width={POSTER.width} height={POSTER.height} />
   </>
 );
