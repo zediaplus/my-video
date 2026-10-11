@@ -8,6 +8,7 @@
     "render": "remotion render ZediaMapsAd out/zedia-maps-ad.mp4 && npm run master",
     "story": "remotion render ZediaMapsStory out/zedia-maps-story.mp4 && ffmpeg -y -loglevel error -i out/zedia-maps-story.mp4 -c:v copy -af loudnorm=I=-16:TP=-1.5:LRA=11 -ar 48000 -c:a aac -b:a 192k -movflags +faststart out/zedia-maps-story-final.mp4",
     "ads30": "remotion render ZediaAds30 out/zedia-ads30.mp4 && ffmpeg -y -loglevel error -i out/zedia-ads30.mp4 -c:v copy -af loudnorm=I=-16:TP=-1.5:LRA=11 -ar 48000 -c:a aac -b:a 192k -t 30 -movflags +faststart out/zedia-ads30-final.mp4",
+    "ads30light": "remotion render ZediaAds30Light out/zedia-ads30-light.mp4 && ffmpeg -y -loglevel error -i out/zedia-ads30-light.mp4 -c:v copy -af loudnorm=I=-16:TP=-1.5:LRA=11 -ar 48000 -c:a aac -b:a 192k -t 33 -movflags +faststart out/zedia-ads30-light-final.mp4",
     "master": "ffmpeg -y -loglevel error -i out/zedia-maps-ad.mp4 -c:v copy -af loudnorm=I=-16:TP=-1.5:LRA=11 -ar 48000 -c:a aac -b:a 192k -movflags +faststart out/zedia-maps-ad-final.mp4",
     "poster": "remotion still ZediaMapsPoster out/zedia-maps-poster.png --scale=2",
     "typecheck": "tsc --noEmit",
@@ -27,6 +28,7 @@
     "@remotion/bundler": "4.0.534",
     "@remotion/renderer": "4.0.534",
     "@types/react": "19.1.8",
+    "simple-icons": "16.34.0",
     "typescript": "5.8.3"
   }
 }
