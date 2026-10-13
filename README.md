@@ -27,3 +27,16 @@ python3 -m http.server 8000
 
 ## النشر
 الموقع ثابت بالكامل ويمكن نشره مجانًا على GitHub Pages أو Netlify أو Vercel.
+
+## الرفع على استضافة Namecheap (cPanel)
+**يدويًا:** cPanel → File Manager → `public_html` → Upload ملف ZIP للموقع → Extract.
+تأكد أن `index.html` و`.htaccess` موجودان مباشرة داخل `public_html`.
+
+**تلقائيًا (GitHub Actions):** أضف هذه الأسرار في GitHub
+(Settings → Secrets and variables → Actions):
+- `FTP_SERVER` — مثل `ftp.zediaplus.com` (أو اسم سيرفر الاستضافة من cPanel)
+- `FTP_USERNAME` — اسم مستخدم FTP
+- `FTP_PASSWORD` — كلمة مرور FTP
+- `FTP_DIR` (اختياري) — المجلد على السيرفر، الافتراضي `public_html/`
+
+بعدها أي تحديث على الفرع يُرفع للموقع تلقائيًا، أو شغّله يدويًا من تبويب Actions.

@@ -1,0 +1,42 @@
+# رفع الموقع تلقائيًا إلى استضافة Namecheap (cPanel) عبر FTP عند كل تحديث.
+# يحتاج 3 أسرار في GitHub: FTP_SERVER و FTP_USERNAME و FTP_PASSWORD
+# (Settings → Secrets and variables → Actions → New repository secret)
+name: Deploy to Namecheap
+
+on:
+  push:
+    branches: [main, claude/nifty-volta-wg0ol7]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      FTP_SERVER: ${{ secrets.FTP_SERVER }}
+    steps:
+      - name: Skip when FTP secrets are not set yet
+        if: env.FTP_SERVER == ''
+        run: echo "FTP secrets are not configured yet — skipping deploy."
+
+      - uses: actions/checkout@v4
+        if: env.FTP_SERVER != ''
+
+      - name: Upload to public_html
+        if: env.FTP_SERVER != ''
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          security: loose
+          server-dir: ${{ secrets.FTP_DIR || 'public_html/' }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            README.md
