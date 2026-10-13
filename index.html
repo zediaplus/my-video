@@ -3,295 +3,374 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>زيديا Zedia+ | للخدمات الإعلامية</title>
-  <meta name="description" content="زيديا شركة رائدة في التسويق والتصميم الجرافيكي، تقدّم حلولًا متكاملة في العلامة التجارية، التسويق الإلكتروني، تجربة المستخدم، المطبوعات وإنتاج الوسائط المتعددة.">
-  <meta name="theme-color" content="#3b8fd8">
+  <title>زيديا Zedia+ | تصميم، تسويق وخدمات خرائط جوجل</title>
+  <meta name="description" content="زيديا للتصميم والتسويق والطباعة: هوية بصرية، حملات إعلانية، إدارة سوشيال ميديا، وتوثيق وتحسين نشاطك على خرائط جوجل. أكثر من 500 مشروع مكتمل و40 عميلًا.">
+  <meta name="theme-color" content="#0b7fc7">
   <meta property="og:title" content="زيديا Zedia+ | راهن على تميزك">
   <meta property="og:description" content="كل ما تريده وأكثر، في مكان واحد لا أكثر.">
-  <meta property="og:image" content="assets/card-mockup.webp">
+  <meta property="og:image" content="assets/logo.webp">
   <link rel="icon" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    try { var t = localStorage.getItem("zedia-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"ProfessionalService","name":"Zedia+ زيديا","description":"تصميم، تسويق رقمي، طباعة وخدمات خرائط جوجل","email":"Zediaplus@gmail.com","telephone":"+966542452310","address":{"@type":"PostalAddress","addressLocality":"Buraydah","addressRegion":"Al Qassim","addressCountry":"SA"},"founder":{"@type":"Person","name":"Mohamed Abdolkamil"}}
+  </script>
 </head>
 <body>
+  <div class="loader" aria-hidden="true"><img src="assets/brand/logo-animated.webp" alt="" width="458" height="347"></div>
   <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
+  <div class="progress" aria-hidden="true"></div>
 
-  <!-- Reusable decorative blob (blue + orange outlines, like the company profile) -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <symbol id="blob" viewBox="0 0 600 460">
-        <path fill="none" stroke="#f7ae1d" stroke-width="5" stroke-linecap="round" d="M120 70c90-60 260-40 360 10s120 150 60 240-200 150-330 120S10 330 20 220 30 130 120 70z"/>
-        <path fill="none" stroke="#4fb3ea" stroke-width="5" stroke-linecap="round" d="M90 140c40-90 200-120 330-80s170 140 120 220-170 130-300 130S30 300 50 230s20-60 40-90z"/>
-      </symbol>
-    </defs>
-  </svg>
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="container topbar-row">
+      <span class="tb-item"><i data-icon="pin"></i> بريدة، القصيم — نعمل مع عملاء من عدة دول</span>
+      <span class="tb-item tb-hide-sm"><i data-icon="mail"></i> <a data-bind="email"></a></span>
+      <span class="tb-socials" data-socials></span>
+    </div>
+  </div>
 
-  <header class="site-header" id="top">
+  <header class="site-header">
     <div class="container nav">
       <a class="brand" href="#top" aria-label="زيديا — الرئيسية">
-        <img src="assets/logo.webp" alt="" width="46" height="46">
+        <img src="assets/logo.webp" alt="" width="52" height="52">
         <span class="brand-text"><b>Zedia+</b><small>For Media Services</small></span>
       </a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="القائمة">
-        <span></span><span></span><span></span>
-      </button>
-      <nav id="nav-menu" class="nav-menu">
-        <a href="#about">من نحن</a>
+      <nav id="nav-menu" class="nav-menu" aria-label="القائمة الرئيسية">
+        <a href="#top" class="active">الرئيسية</a>
         <a href="#services">خدماتنا</a>
-        <a href="#why">لماذا زيديا</a>
-        <a href="#clients">عملاؤنا</a>
-        <a href="#faq">الأسئلة الشائعة</a>
-        <a class="btn btn-sm" href="#contact">تواصل معنا</a>
+        <a href="#maps">خرائط جوجل</a>
+        <a href="#work">معرض الأعمال</a>
+        <a href="#cv">السيرة الذاتية</a>
+        <a href="#faq">الأسئلة</a>
+        <a class="btn btn-sm nav-cta-mobile" href="#contact">تواصل معنا</a>
       </nav>
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" aria-label="تبديل الوضع الليلي"><i data-icon="moon"></i></button>
+        <a class="btn btn-sm btn-orange nav-cta" href="#contact">لنبدأ مشروعك <i data-icon="arrow"></i></a>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="القائمة"><span></span><span></span><span></span></button>
+      </div>
     </div>
   </header>
 
   <main id="main">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="dots dots-hero" aria-hidden="true"></div>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top">
+      <div class="hero-bg" aria-hidden="true">
+        <span class="orb orb-1"></span><span class="orb orb-2"></span><span class="orb orb-3"></span>
+        <span class="dots dots-a"></span><img class="deco-blob" src="assets/brand/blob-outline.webp" alt="" width="500" height="360"><span class="dots dots-b"></span>
+      </div>
       <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <p class="chip-quote">“ كل ما تريده وأكثر، في مكان واحد لا أكثر ”</p>
-          <p class="hero-kicker">راهن على</p>
-          <h1 class="hero-title">تميزك</h1>
-          <p class="lead">لأنك في <b class="blue">زيديا</b> ستحصل على الأفضل، الأوسع، الأسرع والأكثر ثقة. حلول تسويقية وتصميمية متكاملة تصنع لعلامتك حضورًا يُرى ويُتذكّر.</p>
-          <div class="hero-cta">
-            <a class="btn" href="#contact">ابدأ مشروعك الآن</a>
-            <a class="btn btn-ghost" href="#services">استكشف خدماتنا</a>
+        <div class="hero-copy">
+          <p class="pill" data-anim="up"><span class="pulse"></span> وكالة تصميم وتسويق وطباعة</p>
+          <img class="quote-chip" src="assets/brand/quote-chip.webp" alt="كل ما تريده وأكثر في مكان واحد لا أكثر" width="92" height="65">
+          <h1 data-anim="up">
+            نصنع لعلامتك<br>
+            <span class="grad">حضورًا يُرى</span><br>
+            <span class="typed-wrap"><span class="typed" aria-live="polite"></span><span class="caret" aria-hidden="true"></span></span>
+          </h1>
+          <p class="lead" data-anim="up">في <b>زيديا</b> ستحصل على الأفضل، الأوسع، الأسرع والأكثر ثقة. من الهوية البصرية والمطبوعات إلى الحملات الإعلانية وظهور نشاطك على خرائط جوجل — كل ما تريده وأكثر، في مكان واحد.</p>
+          <div class="hero-cta" data-anim="up">
+            <a class="btn btn-lg" href="#contact">اطلب عرض سعر <i data-icon="arrow"></i></a>
+            <a class="btn btn-lg btn-ghost" href="#maps"><span class="play"><i data-icon="pin"></i></span> خدمات خرائط جوجل</a>
+          </div>
+          <div class="hero-stats" data-stats></div>
+        </div>
+
+        <div class="hero-art" data-anim="zoom">
+          <div class="blob-wrap" data-parallax="0.04">
+            <svg class="blob" viewBox="0 0 500 500" aria-hidden="true"><defs><linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#12b0dd"/><stop offset="1" stop-color="#0a4e9b"/></linearGradient></defs><path fill="url(#bg1)"><animate attributeName="d" dur="14s" repeatCount="indefinite" values="M421 316Q392 382 330 418Q268 454 196 434Q124 414 84 352Q44 290 70 214Q96 138 166 96Q236 54 310 82Q384 110 417 180Q450 250 421 316Z;M436 300Q396 350 352 404Q308 458 232 444Q156 430 104 370Q52 310 66 232Q80 154 150 112Q220 70 298 84Q376 98 426 174Q476 250 436 300Z;M421 316Q392 382 330 418Q268 454 196 434Q124 414 84 352Q44 290 70 214Q96 138 166 96Q236 54 310 82Q384 110 417 180Q450 250 421 316Z"/></path></svg>
+            <svg class="ring" viewBox="0 0 500 500" aria-hidden="true"><path d="M120 80c110-60 300-30 340 90s-40 260-170 290S20 400 30 260 60 110 120 80z" fill="none" stroke="#f7ae1d" stroke-width="5" stroke-linecap="round"/></svg>
+          </div>
+          <img class="portrait" src="assets/portrait.webp" alt="محمد عبدالكامل، مؤسس زيديا" width="720" height="1080">
+
+          <div class="float-card fc-a" data-parallax="-0.06">
+            <span class="fc-icon"><i data-icon="trend"></i></span>
+            <div><b><span data-count="500">0</span>+</b><small>مشروع مكتمل</small></div>
+            <svg class="spark" viewBox="0 0 90 30" aria-hidden="true"><path d="M2 26 L18 20 L30 22 L44 12 L58 15 L72 6 L88 4" fill="none" stroke="#1e9e4a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="float-card fc-b" data-parallax="0.05">
+            <span class="g-pin"><i data-icon="pin"></i></span>
+            <div><b>مرشد محلي</b><small>المستوى 6 على خرائط جوجل</small></div>
+          </div>
+          <div class="float-card fc-c" data-parallax="-0.03">
+            <div class="stars" aria-label="تقييم خمس نجوم">★★★★★</div>
+            <small>“أنت لست مجرد عميل، أنت من عائلة زيديا”</small>
           </div>
         </div>
-        <div class="hero-art reveal" aria-hidden="true">
-          <svg class="blob-svg spin-slow"><use href="#blob"/></svg>
-          <img class="hero-logo" src="assets/logo.webp" alt="" width="300" height="300">
-        </div>
-      </div>
-      <div class="container stats reveal">
-        <div class="stat"><b>37</b><span>+ عميل وشريك</span></div>
-        <div class="stat"><b>6</b><span>مجالات خدمة متكاملة</span></div>
-        <div class="stat"><b>3–7</b><span>أيام متوسط التسليم</span></div>
-        <div class="stat"><b>3</b><span>تعديلات مجانية لكل مشروع</span></div>
       </div>
     </section>
 
-    <!-- Quote -->
-    <section class="quote-band">
-      <blockquote class="quote reveal">
-        <p><span class="orange">كل فكرة عظيمة تبدأ بقصة…</span><br>دعنا نروي قصتك بطريقة تُلهم.</p>
-      </blockquote>
+    <!-- ============ LOGO MARQUEE ============ -->
+    <section class="trust" aria-label="عملاء وشركاء">
+      <p class="trust-title">يثق بنا أكثر من <b>40 عميلًا</b> و<b>25 مؤسسة</b></p>
+      <div class="marquee" data-marquee="1"></div>
+      <div class="marquee reverse" data-marquee="2"></div>
     </section>
 
-    <!-- About -->
-    <section class="section" id="about">
+    <!-- ============ ABOUT ============ -->
+    <section class="section about" id="about">
       <div class="container about-grid">
-        <div class="about-copy reveal">
-          <h2 class="title"><span class="sq" aria-hidden="true"></span>من نحن</h2>
-          <p class="big">زيديا هي شركة رائدة في مجال التسويق وتصميم الجرافيك، تقدّم حلولًا متكاملة للشركات والمؤسسات التي تسعى للتميز في مجالات الإعلام الرقمي والإبداعي.</p>
-          <p class="muted">تأسست الشركة لتلبية الاحتياجات المتزايدة للعلامات التجارية التي تبحث عن هوية بصرية مميزة واستراتيجيات تسويقية مبتكرة تتماشى مع التطور السريع في عالم الأعمال.</p>
+        <div class="about-media" data-anim="right">
+          <div class="about-card">
+            <img class="anim-logo" src="assets/brand/logo-animated.webp" alt="شعار زيديا" width="458" height="347" loading="lazy">
+            <div class="badge-years"><b><span data-count="5">0</span>+</b><small>سنوات خبرة</small></div>
+          </div>
+          <span class="dots dots-c" aria-hidden="true"></span>
+        </div>
+        <div class="about-copy" data-anim="left">
+          <p class="eyebrow">من نحن</p>
+          <h2>زيديا… نروي قصتك بلغة يرى بها الآخرون <span class="grad">عظمتك</span></h2>
+          <p>زيديا شركة رائدة في مجال التسويق وتصميم الجرافيك والطباعة، تقدّم حلولًا متكاملة للشركات والمؤسسات التي تسعى للتميز في الإعلام الرقمي والإبداعي، وتلبّي احتياجات العلامات التجارية التي تبحث عن هوية بصرية مميزة واستراتيجيات تسويقية مبتكرة.</p>
           <div class="vm">
-            <article class="vm-card">
-              <h3>الرؤية</h3>
-              <p>أن نصبح الشريك الإعلامي الأول للشركات والمؤسسات الطموحة في العالم العربي، من خلال تقديم خدمات إبداعية متفردة تضيف قيمة حقيقية لكل مشروع.</p>
-            </article>
-            <article class="vm-card">
-              <h3>الرسالة</h3>
-              <p>نؤمن بأن كل علامة تجارية لها قصة تستحق أن تُروى بطرق إبداعية وجذابة. مهمتنا تحويل تلك القصص إلى تجارب بصرية ومحتوى إعلامي يعكس هويتها ويرسّخ وجودها.</p>
-            </article>
+            <div class="vm-item"><span class="vm-ic"><i data-icon="eye"></i></span><div><h3>الرؤية</h3><p>أن نصبح الشريك الإعلامي الأول للشركات والمؤسسات الطموحة في العالم العربي.</p></div></div>
+            <div class="vm-item"><span class="vm-ic orange"><i data-icon="target"></i></span><div><h3>الرسالة</h3><p>تحويل قصص العلامات التجارية إلى تجارب بصرية ومحتوى إعلامي يعكس هويتها ويرسّخ وجودها.</p></div></div>
+          </div>
+          <a class="btn btn-outline" href="#cv">تعرّف على المؤسس <i data-icon="arrow"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section class="section tint" id="services">
+      <div class="container">
+        <div class="section-head center" data-anim="up">
+          <p class="eyebrow">ماذا نقدّم</p>
+          <h2>خدمات متكاملة تحت سقف واحد</h2>
+          <p class="muted">نعمل مع فريق من المحترفين لتحقيق عمل مميز ومتقن بسرعة وجودة عالية.</p>
+        </div>
+        <div class="services" data-services></div>
+      </div>
+    </section>
+
+    <!-- ============ GOOGLE MAPS ============ -->
+    <section class="section maps" id="maps">
+      <div class="maps-bg" aria-hidden="true"></div>
+      <div class="container">
+        <div class="maps-head">
+          <div data-anim="left">
+            <p class="eyebrow light"><span class="g-dots"><i></i><i></i><i></i><i></i></span> خدمات خرائط جوجل</p>
+            <h2>نشاطك مميّز… لكن هل يجدك عملاؤك على <span class="g-text">خرائط جوجل</span>؟</h2>
+            <p class="maps-lead">في هذه اللحظة هناك من يبحث عن خدمة تقدّمها أو منتج تبيعه. في زيديا نساعدك على بناء حضور واضح ومتكامل يجعل التعرّف على نشاطك والوصول إليك أسهل.</p>
+            <div class="hero-cta">
+              <a class="btn btn-lg btn-white" data-wa="مرحبًا زيديا، أريد تحسين ظهور نشاطي على خرائط جوجل. رابط نشاطي: ">أرسل رابط نشاطك الآن <i data-icon="arrow"></i></a>
+            </div>
+          </div>
+
+          <div class="maps-media" data-anim="zoom">
+            <div class="video-slot" data-video></div>
+            <!-- Phone mockup shown when no video URL is set -->
+            <div class="phone" data-phone>
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <div class="map">
+                  <svg viewBox="0 0 300 220" aria-hidden="true" class="map-svg">
+                    <rect width="300" height="220" fill="#e8f0e6"/>
+                    <path d="M0 150 C80 120 120 190 200 160 S300 140 300 140 V220 H0Z" fill="#cfe6f7"/>
+                    <path d="M-10 60 L320 110" stroke="#fff" stroke-width="12"/><path d="M90 -10 L150 230" stroke="#fff" stroke-width="10"/>
+                    <path d="M-10 60 L320 110" stroke="#fbd46b" stroke-width="4"/><path d="M220 -10 L240 230" stroke="#fff" stroke-width="7"/>
+                    <rect x="20" y="80" width="50" height="34" rx="4" fill="#d9e7d3"/><rect x="170" y="20" width="40" height="40" rx="4" fill="#d9e7d3"/>
+                  </svg>
+                  <span class="map-pin"><i data-icon="pin"></i></span>
+                  <span class="map-ping"></span>
+                </div>
+                <div class="biz-card">
+                  <div class="biz-top">
+                    <img src="assets/logo.webp" alt="" width="40" height="40">
+                    <div><b>نشاطك التجاري</b><small>متجر · مفتوح الآن</small></div>
+                  </div>
+                  <div class="biz-rating"><b>4.9</b> <span class="stars">★★★★★</span> <small>(128)</small></div>
+                  <div class="biz-actions">
+                    <span><i data-icon="route"></i>الاتجاهات</span><span><i data-icon="phone"></i>اتصال</span><span><i data-icon="globe"></i>الموقع</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <figure class="founder reveal">
-          <svg class="blob-svg" aria-hidden="true"><use href="#blob"/></svg>
-          <img src="assets/portrait.webp" alt="محمد عبدالكامل، مؤسس زيديا" width="720" height="1080" loading="lazy">
-          <figcaption>
-            <b>محمد عبدالكامل</b>
-            <span>المؤسس والمدير التنفيذي</span>
-          </figcaption>
-        </figure>
+
+        <div class="maps-steps" data-maps-steps></div>
+
+        <div class="proof" data-anim="up">
+          <div class="proof-copy">
+            <h3>أرقامنا الفعلية على خرائط جوجل</h3>
+            <p>نماذج من صورنا ومساهماتنا بمشاهداتها الفعلية كما تظهر في الحساب.</p>
+            <div class="proof-shots">
+              <img src="assets/maps/photos-stats.webp" alt="إحصائية الصور: 468 صورة و1,858,619 مشاهدة" loading="lazy" width="452" height="103">
+              <img src="assets/maps/contributions-panel.webp" alt="لوحة مساهمات مرشد محلي من المستوى 6" loading="lazy" width="501" height="541">
+            </div>
+          </div>
+          <div class="proof-stats" data-maps-proof></div>
+        </div>
       </div>
     </section>
 
-    <!-- Services -->
-    <section class="section section-tint" id="services">
-      <div class="dots dots-side" aria-hidden="true"></div>
+    <!-- ============ PROCESS ============ -->
+    <section class="section process" id="process">
       <div class="container">
-        <div class="section-head reveal">
-          <h2 class="title"><span class="sq" aria-hidden="true"></span>خدماتنا</h2>
-          <p class="muted">في زيديا نعمل مع فريق من المحترفين في المجالات التالية لتحقيق عمل مميز ومتقن بسرعة وجودة عالية.</p>
+        <div class="section-head" data-anim="up">
+          <p class="eyebrow light">طريقة العمل</p>
+          <h2>من الفكرة إلى النتيجة في 4 خطوات</h2>
         </div>
-        <div class="cards">
-          <article class="card reveal">
-            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 5 5.6.8-4 3.9.9 5.5L12 14.6 7.1 17.2 8 11.7 4 7.8 9.6 7z"/></svg></div>
-            <h3>العلامة التجارية</h3>
-            <p>بناء وتطوير العلامة التجارية بدايةً من وضع المفهوم وحتى تحقيق الرؤية.</p>
-          </article>
-          <article class="card reveal">
-            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div>
-            <h3>التسويق الإلكتروني</h3>
-            <p>استراتيجيات تسويق فعّالة عبر وسائل التواصل الاجتماعي، إدارة الحملات الإعلانية، وتحليل الأداء لتحسين النتائج بحلول مبتكرة ومصداقية مستدامة.</p>
-          </article>
-          <article class="card reveal">
-            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 9h5M7 12h8"/></svg></div>
-            <h3>تجربة وواجهة المستخدم</h3>
-            <p>نصمّم لك ما تريد ونجعله واقعًا بين يديك لتعيشه وتستكشف ما بداخله.</p>
-          </article>
-          <article class="card reveal">
-            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="2.5"/><path d="M3 21l7-7 4 4 7-7"/><path d="M3 3h18v18H3z"/></svg></div>
-            <h3>التصميم الجرافيكي</h3>
-            <p>إنشاء هويات بصرية متكاملة تشمل الشعارات، الكتيبات، المواد الترويجية، والتصاميم الرقمية والمطبوعة.</p>
-          </article>
-          <article class="card reveal">
-            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg></div>
-            <h3>المطبوعات</h3>
-            <p>نوفر لك تصاميم تميّز عملك مع خيارات متعددة للطباعة.</p>
-          </article>
-          <article class="card reveal">
-            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3z"/></svg></div>
-            <h3>إنتاج الوسائط المتعددة</h3>
-            <p>تصميم وتصوير وإنتاج فيديوهات ومواد دعائية احترافية تميّز العلامة التجارية.</p>
-          </article>
-        </div>
+        <ol class="steps" data-process></ol>
       </div>
     </section>
 
-    <!-- Why Zedia -->
-    <section class="section" id="why">
-      <div class="container why-grid">
-        <div class="why-col reveal">
-          <span class="squiggle" aria-hidden="true"></span>
-          <h2 class="title"><span class="circle" aria-hidden="true"></span>مميزات أن تكون <span class="blue">زيديا</span> خيارك</h2>
-          <p class="muted">في عالم الوسائط المتعددة والإنترنت:</p>
-          <ul class="bullets">
-            <li>تمتع بأفضل وأحدث التقنيات والترندات في عملك.</li>
-            <li>لديك مساحة خاصة لدينا لتحتفظ بعملك وترجع إليه وقتما تريد.</li>
-            <li>عروض وتخفيضات خاصة لك لأنك عميل مميز لدى زيديا.</li>
-          </ul>
-        </div>
-        <div class="why-col reveal">
-          <span class="squiggle" aria-hidden="true"></span>
-          <h2 class="title"><span class="circle" aria-hidden="true"></span>لماذا زيديا هي خيارك الأفضل</h2>
-          <ul class="bullets">
-            <li>فريق مبدع ومتميز يمتلك خبرة واسعة في مجالات التسويق والإعلام.</li>
-            <li>حلول مبتكرة ومخصصة تلبي احتياجات عملائنا الفريدة.</li>
-            <li>التزام تام بالجودة والإبداع في كل مشروع نقوم به.</li>
-            <li>متابعة مستمرة لضمان تحقيق أفضل النتائج لعملائنا.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Quote -->
-    <section class="quote-band">
-      <blockquote class="quote reveal">
-        <p><span class="orange">أنت لست مجرد عميل</span><br>أنت أحد أفراد عائلة <b class="blue">زيديا</b></p>
-      </blockquote>
-    </section>
-
-    <!-- Clients -->
+    <!-- ============ CLIENT GRID ============ -->
     <section class="section" id="clients">
       <div class="container">
-        <div class="section-head reveal">
-          <h2 class="title"><span class="sq" aria-hidden="true"></span>عملاؤنا وشركاؤنا</h2>
-          <p class="muted">في زيديا نؤمن أن نجاحنا الحقيقي ينبع من ثقة عملائنا وشركائنا. نعتز بالعلاقات المتميزة التي نبنيها معهم، حيث نعتبرهم شركاء في مسيرتنا نحو تحقيق الإبداع والتميز.</p>
+        <div class="section-head center" data-anim="up">
+          <p class="eyebrow">عملاؤنا وشركاؤنا</p>
+          <h2>نجاحنا الحقيقي ينبع من ثقة عملائنا</h2>
+          <p class="muted">نعتز بالعلاقات المتميزة التي نبنيها مع عملائنا، ونعتبرهم شركاء في مسيرتنا نحو الإبداع والتميز.</p>
         </div>
-        <ul class="logos" id="logos"></ul>
+        <div class="big-stats" data-big-stats></div>
+        <div class="marquee" data-marquee="3"></div>
       </div>
     </section>
 
-    <!-- Quote -->
-    <section class="quote-band quote-dark">
-      <blockquote class="quote reveal">
-        <p>في <b>زيديا</b> <span class="orange">لا نصنع مجرد تصاميم…</span><br>بل نروي قصصًا تُلهم، <span class="orange">تُؤثر، وتبقى.</span></p>
-      </blockquote>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section" id="faq">
-      <div class="container narrow">
-        <div class="section-head reveal">
-          <h2 class="title"><span class="circle" aria-hidden="true"></span>الأسئلة الشائعة</h2>
-        </div>
-        <div class="accordion reveal">
-          <details><summary>ما المدة التي يستغرقها تنفيذ المشروع؟</summary><p>يعتمد ذلك على نوع المشروع، لكن في المتوسط يتم التسليم خلال 3 إلى 7 أيام عمل. قد تختلف المدة في المشاريع الكبيرة أو التي تتطلب تصويرًا خارجيًا.</p></details>
-          <details><summary>هل يمكنني طلب تعديل على المشروع؟</summary><p>نعم، نمنحك 3 تعديلات مجانية لكل مشروع. بعد ذلك يمكن تنفيذ تعديلات إضافية برسوم رمزية يتم الاتفاق عليها مسبقًا.</p></details>
-          <details><summary>كيف يمكنني متابعة تقدم مشروعي؟</summary><p>نوفر لك تحديثات مستمرة على البريد الإلكتروني أو واتساب، ويمكنك طلب معاينة مرحلية في أي وقت.</p></details>
-          <details><summary>هل هناك ضمان على جودة العمل؟</summary><p>بكل تأكيد! نحن نضمن رضاك التام، أو نعيد صياغة العمل حسب ملاحظاتك بما يتماشى مع بنود الاتفاق.</p></details>
-          <details><summary>ما هي طرق الدفع المتاحة؟</summary><p>نقبل التحويل البنكي المباشر (محلي وعالمي)، والدفع نقدًا (جنيه أو دولار).</p></details>
-          <details><summary>ماذا يحدث إذا ألغيت المشروع بعد الدفع؟</summary><p>يتم تقييم مرحلة التنفيذ وتحديد قيمة المبلغ المسترد بناءً على التكاليف المترتبة حتى لحظة الإلغاء.</p></details>
-          <details><summary>هل يمكنني استخدام المشروع في أي مكان بعد استلامه؟</summary><p>نعم، يصبح المشروع ملكًا لك بالكامل بعد السداد الكامل، ويمكنك استخدامه بحرية. نحتفظ فقط بحق عرضه في معرض أعمالنا (ما لم تطلب خلاف ذلك كتابيًا).</p></details>
-        </div>
-      </div>
-    </section>
-
-    <!-- Policies -->
-    <section class="section section-tint" id="policies">
-      <div class="container narrow">
-        <div class="section-head reveal">
-          <h2 class="title"><span class="sq" aria-hidden="true"></span>السياسات والشروط العامة</h2>
-          <p class="muted">في زيديا نعمل على تقديم خدمات إعلامية متكاملة بأعلى معايير الجودة والشفافية، مع الالتزام التام بحقوق عملائنا. تحتفظ زيديا بحق تعديل هذه السياسات في أي وقت مع إعلام العملاء بالتغييرات عند الضرورة.</p>
-        </div>
-        <div class="accordion reveal">
-          <details>
-            <summary>أولًا: سياسة تنفيذ المشاريع</summary>
-            <dl>
-              <dt>بداية العمل والتسليم</dt><dd>يبدأ تنفيذ المشروع فور استلام الدفعة المقدمة بنسبة 50٪ من قيمة المشروع، ويتم الالتزام بتسليمه في غضون المدة المتفق عليها مسبقًا في أيام العمل (يوم الجمعة ليس يوم عمل).</dd>
-              <dt>الشفافية</dt><dd>نلتزم بتوضيح الأدوات والمعدات المستخدمة في تنفيذ المشروع لضمان وضوح العمليات وجودة النتائج.</dd>
-              <dt>التعديلات</dt><dd>يحق للعميل إجراء 3 تعديلات مجانية على المشروع الواحد دون رسوم إضافية.</dd>
-              <dt>الشرط الجزائي</dt><dd>تتعهد زيديا بدفع شرط جزائي قدره 50٪ من قيمة العقد في حال الفشل في إنهاء المشروع أو إنتاجه، ما لم تكن هناك ظروف قاهرة مثل: انقطاع خدمة الإنترنت، إغلاق الشوارع داخل المدن، عدم استجابة العميل لاستلام المشروع، أو تأخير التسليم لمدة تزيد عن 14 يومًا من التاريخ المحدد.</dd>
-              <dt>ملكية المشروع</dt><dd>يصبح المشروع ملكًا للعميل فور اكتمال العمل والدفع الكامل، مع احتفاظ زيديا بحق عرضه في معرض الأعمال لأغراض تسويقية. في حال عدم اكتمال العمل أو عدم السداد الكامل تحتفظ زيديا بحق ملكية المشروع.</dd>
-            </dl>
-          </details>
-          <details>
-            <summary>ثانيًا: سياسة الخصوصية</summary>
-            <dl>
-              <dt>جمع البيانات</dt><dd>نقوم بجمع المعلومات الشخصية مثل الاسم والبريد الإلكتروني ورقم الهاتف عند تقديمها طوعًا من قبل العميل.</dd>
-              <dt>استخدام البيانات</dt><dd>تُستخدم البيانات لتقديم الخدمات المطلوبة فقط، ولا يتم مشاركتها مع أي طرف ثالث دون موافقة العميل، إلا إذا كان ذلك مطلوبًا قانونيًا.</dd>
-              <dt>حماية البيانات</dt><dd>نلتزم بتطبيق أفضل الممارسات لحماية بيانات العملاء من الوصول غير المصرح به أو الاستخدام غير المناسب.</dd>
-              <dt>حقوق العملاء</dt><dd>يحق للعملاء الوصول إلى بياناتهم الشخصية أو تعديلها أو طلب حذفها عبر قنوات التواصل الرسمية.</dd>
-            </dl>
-          </details>
-          <details>
-            <summary>ثالثًا: شروط وأحكام الاستخدام</summary>
-            <dl>
-              <dt>الموافقة</dt><dd>تُعد الاستفادة من خدماتنا قبولًا تامًا لشروطنا وأحكامنا.</dd>
-              <dt>استخدام الخدمات</dt><dd>يجب استخدام خدماتنا لأغراض مشروعة فقط، ونحتفظ بالحق في إنهاء الخدمة إذا تم استخدامها بشكل مخالف للقانون.</dd>
-              <dt>حقوق الملكية الفكرية</dt><dd>جميع الأعمال والتصاميم المنتجة من قبل زيديا هي ملكية فكرية للشركة، ولا يجوز إعادة استخدامها أو تعديلها دون إذن مسبق.</dd>
-              <dt>الدفع</dt><dd>يتم الاتفاق على تفاصيل الدفع والخطط الزمنية مسبقًا، مع إمكانية تطبيق رسوم إضافية في حالة طلب خدمات إضافية أو تعديلات خارج النطاق المتفق عليه.</dd>
-              <dt>الإلغاء واسترداد الأموال</dt><dd>يحق للعملاء إلغاء الخدمة قبل بدء التنفيذ، ويتم تحديد قيمة الاسترداد بناءً على تقدم العمل والتكاليف المترتبة.</dd>
-            </dl>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section" id="contact">
+    <!-- ============ PORTFOLIO (Google Drive) ============ -->
+    <section class="section tint" id="work">
       <div class="container">
-        <div class="contact-box reveal">
-          <div class="contact-copy">
-            <h2>نحن لا نصمم…<br><span class="orange">بل نروي قصتك بلغة يرى بها الآخرون عظمتك.</span></h2>
-            <p>أخبرنا عن مشروعك وسنعود إليك بخطة وعرض مناسب.</p>
-            <ul class="contact-list">
-              <li><span>هاتف / واتساب</span><a href="tel:+249110045011" dir="ltr">+249 110 045 011</a></li>
-              <li><span>البريد الإلكتروني</span><a href="mailto:Zediaplus@gmail.com" dir="ltr">Zediaplus@gmail.com</a></li>
-              <li><span>تابعنا</span><b dir="ltr">@Zediaplus</b></li>
+        <div class="work-head" data-anim="up">
+          <div>
+            <p class="eyebrow">معرض الأعمال</p>
+            <h2>أعمال نفخر بها</h2>
+            <p class="muted">تصفّح معرض أعمالنا مباشرة: هويات بصرية، مطبوعات، تصاميم سوشيال ميديا وفيديوهات. اضغط على أي ملف لمعاينته.</p>
+          </div>
+          <a class="btn btn-outline" data-drive-open target="_blank" rel="noopener"><i data-icon="folder"></i> فتح المعرض في نافذة كاملة</a>
+        </div>
+        <div class="drive-frame" data-anim="up">
+          <div class="drive-bar"><span></span><span></span><span></span><b>معرض أعمال زيديا</b></div>
+          <iframe data-drive title="معرض أعمال زيديا على Google Drive" loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CV ============ -->
+    <section class="section tint cv" id="cv">
+      <div class="container">
+        <div class="section-head center" data-anim="up">
+          <p class="eyebrow">السيرة الذاتية للمؤسس</p>
+          <h2 data-bind="cv.name"></h2>
+          <p class="muted" data-bind="cv.role"></p>
+        </div>
+        <div class="cv-grid">
+          <aside class="cv-side" data-anim="right">
+            <div class="cv-photo"><img src="assets/portrait-cv.webp" alt="محمد عبدالكامل" loading="lazy" width="600" height="900"></div>
+            <ul class="cv-contact">
+              <li><i data-icon="pin"></i><span data-bind="cv.location"></span></li>
+              <li><i data-icon="whatsapp"></i><a data-bind="whatsapp" dir="ltr"></a></li>
+              <li><i data-icon="mail"></i><a data-bind="email" dir="ltr"></a></li>
             </ul>
+            <div class="cv-socials" data-socials></div>
+            <div class="cv-box"><h4>اللغات</h4><ul class="langs" data-langs></ul></div>
+            <div class="cv-box"><h4>البرامج</h4><div class="chips" data-software></div></div>
+          </aside>
+          <div class="cv-main">
+            <div class="cv-card" data-anim="up"><h3><i data-icon="user"></i> نبذة</h3><p data-bind="cv.bio"></p></div>
+            <div class="cv-card" data-anim="up"><h3><i data-icon="briefcase"></i> الخبرة</h3><div class="timeline" data-experience></div></div>
+            <div class="cv-card" data-anim="up"><h3><i data-icon="award"></i> الشهادات</h3><div class="certs" data-certs></div></div>
+            <div class="cv-two">
+              <div class="cv-card" data-anim="up"><h3><i data-icon="chart"></i> المهارات</h3><div class="skills" data-skills></div></div>
+              <div class="cv-card" data-anim="up">
+                <h3><i data-icon="print"></i> خبرة الطباعة</h3><div class="chips" data-printing></div>
+                <h3 class="mt-sm"><i data-icon="list"></i> العمليات</h3><div class="chips" data-operations></div>
+                <h3 class="mt-sm"><i data-icon="cap"></i> التعليم</h3><p class="edu" data-education></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHY ============ -->
+    <section class="section" id="why">
+      <div class="container why-grid">
+        <div data-anim="left">
+          <p class="eyebrow">لماذا زيديا</p>
+          <h2>لأنك لست مجرد عميل… <span class="grad">أنت من عائلة زيديا</span></h2>
+          <ul class="checks">
+            <li>فريق مبدع يمتلك خبرة واسعة في التسويق والإعلام.</li>
+            <li>حلول مبتكرة ومخصصة تلبي احتياجاتك الفريدة.</li>
+            <li>التزام تام بالجودة والإبداع في كل مشروع.</li>
+            <li>متابعة مستمرة لضمان تحقيق أفضل النتائج.</li>
+          </ul>
+        </div>
+        <div class="why-cards" data-why></div>
+      </div>
+    </section>
+
+    <!-- ============ QUOTE ============ -->
+    <section class="quote-band">
+      <div class="container">
+        <blockquote data-anim="up">في زيديا <span class="orange">لا نصنع مجرد تصاميم…</span> بل نروي قصصًا تُلهم، تُؤثر، <span class="orange">وتبقى.</span></blockquote>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="section tint" id="reviews">
+      <div class="container">
+        <div class="section-head center" data-anim="up">
+          <p class="eyebrow">آراء العملاء</p>
+          <h2>ماذا يقول عملاؤنا</h2>
+        </div>
+        <div class="reviews" data-anim="up">
+          <div class="reviews-track" data-reviews></div>
+          <div class="reviews-nav"><button class="icon-btn" data-prev aria-label="السابق"><i data-icon="arrowR"></i></button><div class="dots-nav" data-dots></div><button class="icon-btn" data-next aria-label="التالي"><i data-icon="arrow"></i></button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ + POLICIES ============ -->
+    <section class="section" id="faq">
+      <div class="container faq-grid">
+        <div data-anim="right">
+          <p class="eyebrow">الأسئلة الشائعة</p>
+          <h2>كل ما تريد معرفته قبل أن نبدأ</h2>
+          <p class="muted">لم تجد إجابتك؟ راسلنا مباشرة على واتساب وسنرد عليك سريعًا.</p>
+          <a class="btn btn-green" data-wa="مرحبًا زيديا، لدي سؤال: "><i data-icon="whatsapp"></i> اسألنا على واتساب</a>
+          <div class="policies">
+            <h3>السياسات والشروط</h3>
+            <div class="tabs" role="tablist" data-policy-tabs></div>
+            <div class="tab-panel" data-policy-panel></div>
+          </div>
+        </div>
+        <div class="accordion" data-faq data-anim="left"></div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="contact-box" data-anim="up">
+          <div class="contact-copy">
+            <p class="eyebrow light">لنعمل معًا</p>
+            <h2>عندك مشروع في بالك؟</h2>
+            <p>أخبرنا عن فكرتك وسنعود إليك بخطة وعرض مناسب. وراء نشاطك جهد يستحق أن يراه الناس.</p>
+            <ul class="contact-list">
+              <li><i data-icon="whatsapp"></i><a data-bind="whatsapp" dir="ltr"></a></li>
+              <li><i data-icon="mail"></i><a data-bind="email" dir="ltr"></a></li>
+              <li><i data-icon="pin"></i><span>بريدة، القصيم — وعن بُعد لكل الدول</span></li>
+            </ul>
+            <div class="contact-row">
+              <div class="contact-socials" data-socials></div>
+              <figure class="qr"><img src="assets/brand/qr.png" alt="رمز QR للتواصل مع زيديا" width="548" height="383" loading="lazy"><figcaption>امسح الكود</figcaption></figure>
+            </div>
           </div>
           <form class="contact-form" id="contact-form" novalidate>
-            <label>الاسم<input name="name" required autocomplete="name" placeholder="اسمك الكريم"></label>
-            <label>الخدمة المطلوبة
-              <select name="service">
-                <option>العلامة التجارية</option>
-                <option>التسويق الإلكتروني</option>
-                <option>تجربة وواجهة المستخدم</option>
-                <option>التصميم الجرافيكي</option>
-                <option>المطبوعات</option>
-                <option>إنتاج الوسائط المتعددة</option>
-              </select>
-            </label>
-            <label>تفاصيل المشروع<textarea name="message" rows="4" required placeholder="اكتب نبذة عن مشروعك…"></textarea></label>
-            <button class="btn btn-block" type="submit">أرسل عبر واتساب</button>
+            <div class="row2">
+              <label>الاسم<input name="name" required autocomplete="name" placeholder="اسمك الكريم"></label>
+              <label>رقم الجوال<input name="phone" inputmode="tel" autocomplete="tel" placeholder="اختياري" dir="ltr"></label>
+            </div>
+            <label>الخدمة المطلوبة<select name="service" data-service-options></select></label>
+            <label>تفاصيل المشروع<textarea name="message" rows="4" required placeholder="اكتب نبذة عن مشروعك، أو ألصق رابط نشاطك على خرائط جوجل…"></textarea></label>
+            <button class="btn btn-lg btn-block" type="submit">أرسل عبر واتساب <i data-icon="send"></i></button>
             <p class="form-note" role="status" aria-live="polite"></p>
           </form>
         </div>
@@ -300,17 +379,25 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-row">
-      <a class="brand" href="#top"><img src="assets/logo.webp" alt="" width="40" height="40"><span class="brand-text"><b>Zedia+</b><small>For Media Services</small></span></a>
-      <p class="footer-tag">كل ما تريده وأكثر، <span class="orange">في مكان واحد لا أكثر.</span></p>
-      <p class="copy">جميع الحقوق محفوظة © <span id="year">2025</span> زيديا</p>
+    <div class="container footer-grid">
+      <div>
+        <a class="footer-logo" href="#top" aria-label="زيديا"><img src="assets/brand/logo-blob.webp" alt="شعار زيديا" width="600" height="418" loading="lazy"></a>
+        <p class="footer-tag">كل ما تريده وأكثر، <span class="orange">في مكان واحد لا أكثر.</span></p>
+        <div class="footer-socials" data-socials></div>
+      </div>
+      <div><h4>روابط</h4><ul><li><a href="#about">من نحن</a></li><li><a href="#services">خدماتنا</a></li><li><a href="#clients">عملاؤنا</a></li><li><a href="#cv">السيرة الذاتية</a></li></ul></div>
+      <div><h4>خدمات</h4><ul data-footer-services></ul></div>
+      <div><h4>تواصل</h4><ul><li><a data-bind="whatsapp" dir="ltr"></a></li><li><a data-bind="email"></a></li><li>بريدة، القصيم</li></ul></div>
+    </div>
+    <div class="container footer-bottom">
+      <p>جميع الحقوق محفوظة © <span id="year">2026</span> زيديا Zedia+</p>
+      <a href="#top" class="to-top">العودة للأعلى <i data-icon="up"></i></a>
     </div>
   </footer>
 
-  <a class="wa-float" href="https://wa.me/249110045011" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.1-.3.3-.1.6.1.3.7 1.1 1.4 1.8.9.8 1.7 1.1 2 1.2.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.7-.1 1.3z"/></svg>
-  </a>
+  <a class="wa-float" data-wa="مرحبًا زيديا 👋" aria-label="تواصل عبر واتساب"><i data-icon="whatsapp"></i><span class="wa-tip">تحدث معنا</span></a>
 
-  <script src="script.js"></script>
+  <script src="data/content.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
