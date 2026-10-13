@@ -6,13 +6,13 @@ import {T} from './timing';
 export const Logo: React.FC = () => {
   const t = useTime();
   const intro = ramp(t, 0, 0.9);
-  const toCenter = interpolate(t, [T.outroLogo, T.outroLogo + 0.9], [0, 1], {
+  const toCenter = interpolate(t, [T.outro, T.brand + 0.4], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
     easing: Easing.inOut(Easing.cubic),
   });
   const height = interpolate(toCenter, [0, 1], [210, 420]);
-  const top = interpolate(toCenter, [0, 1], [70, 560]);
+  const top = interpolate(toCenter, [0, 1], [70, 520]);
   return (
     <AbsoluteFill>
       <Img

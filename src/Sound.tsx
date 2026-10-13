@@ -28,24 +28,31 @@ export const Sound: React.FC = () => {
       />
 
       <Fx at={0} file="whoosh.wav" />
-      <Fx at={T.a0} file="bass.wav" gain={1.3} />
+      <Fx at={T.basics} file="bass.wav" gain={1.3} />
       {T.folds.map((e) => (
         <Fx key={`f${e}`} at={e - 0.5} file="fold.wav" />
       ))}
       {T.folds.map((e) => (
         <Fx key={`p${e}`} at={e} file="pop.wav" gain={0.7} />
       ))}
-      <Fx at={T.recap} file="ding.wav" gain={0.6} />
-      <Fx at={T.card - 0.15} file="whoosh.wav" />
-      <Fx at={T.cardDiagram} file="click.wav" />
-      <Fx at={T.cardA5 - 1.5} file="click.wav" />
-      <Fx at={T.cardA5} file="ding.wav" gain={0.6} />
+      <Fx at={T.a4Docs} file="click.wav" />
+      <Fx at={T.a4Slides - 0.1} file="whoosh.wav" gain={0.6} />
+      <Fx at={T.a4Daily - 0.1} file="whoosh.wav" gain={0.6} />
+      <Fx at={T.goOn} file="whoosh.wav" gain={0.6} />
+      <Fx at={T.cards - 0.2} file="whoosh.wav" />
+      <Fx at={T.bizCard} file="click.wav" />
+      <Fx at={T.card14} file="click.wav" />
+      <Fx at={T.invites} file="ding.wav" gain={0.5} />
+      <Fx at={T.offers} file="fold.wav" />
+      <Fx at={T.packaging - 0.2} file="whoosh.wav" />
+      {[0, 1, 2].map((i) => (
+        <Fx key={`st${i}`} at={T.stickerHit + i * 0.14} file="stick.wav" gain={0.6} />
+      ))}
       {T.stickerSizes.map((s, i) => (
         <Fx key={`s${s}`} at={s} file={`pop${i + 1}.wav`} gain={0.7} />
       ))}
-      <Fx at={T.stickerPhoto} file="stick.wav" />
-      <Fx at={T.outro - 0.2} file="whoosh.wav" />
-      <Fx at={T.outroLogo} file="whoosh.wav" gain={0.8} />
+      <Fx at={T.chooseSize} file="ding.wav" gain={0.5} />
+      <Fx at={T.outro} file="whoosh.wav" />
     </>
   );
 };

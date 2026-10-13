@@ -20,16 +20,16 @@ export const TakwinSizes: React.FC = () => {
   useFonts();
   return (
     <AbsoluteFill style={{background: `radial-gradient(ellipse at 50% 45%, ${C.bgInner} 0%, ${C.bgOuter} 100%)`}}>
-      <Span from={0} to={T.a0 + 0.2}>
+      <Span from={0} to={T.basics + 0.2}>
         <Intro />
       </Span>
-      <Span from={T.a0 - 0.1} to={T.stageOut + 0.6}>
+      <Span from={T.basics - 0.1} to={T.stageOut + 0.6}>
         <PaperStage />
       </Span>
-      <Span from={T.card - 0.1} to={T.cardOut + 0.5}>
+      <Span from={T.cards - 0.1} to={T.cardsOut + 0.4}>
         <CardScene />
       </Span>
-      <Span from={T.stickers - 0.2} to={T.stickersOut + 0.5}>
+      <Span from={T.packaging - 0.1} to={T.stickersOut + 0.4}>
         <StickerScene />
       </Span>
       <Span from={T.outro - 0.1} to={TOTAL_SECONDS}>

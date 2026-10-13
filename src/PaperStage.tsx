@@ -3,22 +3,23 @@ import {A_SIZES, FOLD_RECTS, Rect} from './sizes';
 import {C, FONT} from './theme';
 import {T} from './timing';
 import {appear, Chip, Dim, ramp, Text, useTime} from './ui';
+import {DocumentPage, FlyerPage, SlidesPage} from './Mockups';
 
 const SCALE = 880 / 841; // px per mm, A0 fills the width
 const OX = (1080 - 841 * SCALE) / 2;
 const OY = 330;
 const FOLD_DUR = 0.6;
+// Where A4 sits once it fills the screen
+const A4_VIEW = {left: 110, width: 860, top: 330};
 
 const px = (r: Rect) => ({left: OX + r.x * SCALE, top: OY + r.y * SCALE, width: r.w * SCALE, height: r.h * SCALE});
 const isPortrait = (r: Rect) => r.h >= r.w;
 // Half of `r` that is folded over (and later left empty)
 const flapOf = (r: Rect): Rect => (isPortrait(r) ? {...r, h: r.h / 2} : {...r, w: r.w / 2});
-const pulse = (t: number, from: number, dur: number) =>
-  interpolate(t, [from, from + dur * 0.35, from + dur], [0, 1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
 
 const mm = (i: number) => `${A_SIZES[i].w} × ${A_SIZES[i].h}`;
 
-const SheetLabel: React.FC<{i: number; r: Rect; accent: boolean}> = ({i, r, accent}) => {
+const SheetLabel: React.FC<{i: number; r: Rect; accent: boolean; opacity: number}> = ({i, r, accent, opacity}) => {
   const p = px(r);
   const size = Math.max(26, Math.min(130, p.width * 0.2));
   return (
@@ -35,6 +36,7 @@ const SheetLabel: React.FC<{i: number; r: Rect; accent: boolean}> = ({i, r, acce
         fontSize: size,
         color: accent ? C.accent : C.ink,
         lineHeight: 1,
+        opacity,
       }}
     >
       {A_SIZES[i].name}
@@ -42,21 +44,17 @@ const SheetLabel: React.FC<{i: number; r: Rect; accent: boolean}> = ({i, r, acce
   );
 };
 
-const Ghost: React.FC<{i: number; t: number}> = ({i, t}) => {
+const Ghost: React.FC<{i: number}> = ({i}) => {
   const r = FOLD_RECTS[i];
   const p = px(r);
-  const freed = px(flapOf(r));
-  const tint = pulse(t, T.recap + i * 0.32, 0.9);
-  const lineHot = pulse(t, T.recap + i * 0.32, 0.9);
   const fs = Math.max(20, Math.min(46, p.width * 0.075));
   return (
     <>
-      <div style={{position: 'absolute', ...freed, background: C.accent, opacity: 0.16 * tint}} />
       <div
         style={{
           position: 'absolute',
           ...p,
-          border: `${2 + lineHot * 2}px solid ${lineHot > 0.05 ? C.accent : C.line}`,
+          border: `2px solid ${C.line}`,
           opacity: 0.75,
         }}
       />
@@ -94,7 +92,7 @@ export const PaperStage: React.FC = () => {
     ? interpolate(t, [starts[done], ends[done]], [0, 1], {easing: Easing.inOut(Easing.cubic)})
     : 0;
 
-  const enter = ramp(t, T.a0, 0.7);
+  const enter = ramp(t, T.basics, 0.7);
   const exit = ramp(t, T.stageOut, 0.5, Easing.in(Easing.cubic));
   const ghostCount = done + (folding ? 1 : 0);
 
@@ -140,21 +138,30 @@ export const PaperStage: React.FC = () => {
     paper = (
       <>
         <div style={{...paperStyle, ...sp, transform: `scale(${pop})`}} />
-        <SheetLabel i={done} r={sheet} accent={done === 4} />
+        <SheetLabel i={done} r={sheet} accent={done === 4} opacity={done === 0 ? ramp(t, T.a0, 0.3) : done === 4 ? 1 - ramp(t, T.a4Docs, 0.3) : 1} />
       </>
     );
   }
+
+  // Camera: A4 fills the screen while its uses are shown
+  const zoom =
+    ramp(t, T.folds[3], 0.65, Easing.inOut(Easing.cubic)) * (1 - ramp(t, T.goOn, 0.55, Easing.inOut(Easing.cubic)));
+  const a4 = px(FOLD_RECTS[4]);
+  const S = 1 + (A4_VIEW.width / a4.width - 1) * zoom;
+  const tx = (A4_VIEW.left - (A4_VIEW.width / a4.width) * a4.left) * zoom;
+  const ty = (A4_VIEW.top - (A4_VIEW.width / a4.width) * a4.top) * zoom;
+  const a4Now = {left: a4.left * S + tx, top: a4.top * S + ty, width: a4.width * S, height: a4.height * S};
 
   return (
     <AbsoluteFill
       style={{
         opacity: enter * (1 - exit),
         transform: `scale(${(0.94 + 0.06 * enter) * (1 - 0.04 * exit)})`,
-        perspective: 3200,
       }}
     >
+      <AbsoluteFill style={{transformOrigin: '0 0', transform: `translate(${tx}px, ${ty}px) scale(${S})`, perspective: 3200}}>
       {Array.from({length: ghostCount}, (_, i) => (
-        <Ghost key={i} i={i} t={t} />
+        <Ghost key={i} i={i} />
       ))}
       {paper}
       <div
@@ -167,8 +174,53 @@ export const PaperStage: React.FC = () => {
           borderRadius: 2,
         }}
       />
+      </AbsoluteFill>
+      {done === 4 && <A4Uses t={t} rect={a4Now} />}
       <Caption t={t} />
     </AbsoluteFill>
+  );
+};
+
+// «للمستندات والعروض والمطبوعات اليومية»: printed A4 pages stacked on the full-screen A4
+const A4Uses: React.FC<{t: number; rect: {left: number; top: number; width: number; height: number}}> = ({t, rect}) => {
+  const u = rect.width / 100;
+  const leave = ramp(t, T.goOn, 0.45, Easing.in(Easing.cubic));
+  const docs = ramp(t, T.a4Docs, 0.35) * (1 - leave);
+  const pages = [
+    {from: T.a4Slides, dir: 1, rot: 3, node: <SlidesPage u={u} />, label: 'عروض'},
+    {from: T.a4Daily, dir: -1, rot: -2.5, node: <FlyerPage u={u} />, label: 'مطبوعات يومية'},
+  ];
+  const label = (text: string, o: number) => (
+    <div style={{position: 'absolute', left: 0, right: 0, bottom: -28, display: 'flex', justifyContent: 'center', opacity: o}}>
+      <Chip accent style={{fontSize: 46, padding: '10px 36px', boxShadow: '0 8px 20px rgba(0,0,0,0.2)'}}>{text}</Chip>
+    </div>
+  );
+  return (
+    <>
+      <div style={{position: 'absolute', ...rect, opacity: docs}}>
+        <DocumentPage u={u} />
+        {label('مستندات', ramp(t, T.a4Docs + 0.1, 0.3) * (1 - ramp(t, T.a4Slides, 0.2)))}
+      </div>
+      {pages.map((p, k) => {
+        const inP = ramp(t, p.from, 0.45, Easing.out(Easing.cubic));
+        const x = (1 - inP) * 1100 * p.dir + leave * 1200 * p.dir;
+        const nextFrom = pages[k + 1]?.from;
+        return (
+          <div
+            key={k}
+            style={{
+              ...paperStyle,
+              ...rect,
+              transform: `translateX(${x}px) rotate(${p.rot * inP}deg)`,
+              opacity: inP > 0 ? 1 : 0,
+            }}
+          >
+            {p.node}
+            {label(p.label, ramp(t, p.from + 0.15, 0.3) * (nextFrom ? 1 - ramp(t, nextFrom, 0.2) : 1))}
+          </div>
+        );
+      })}
+    </>
   );
 };
 
@@ -190,9 +242,18 @@ const SizeCaption: React.FC<{i: number; chip?: React.ReactNode}> = ({i, chip}) =
 
 const Caption: React.FC<{t: number}> = ({t}) => {
   const caps: Cap[] = [
+    {from: T.basics, node: <Text size={72} weight={700}>نبدأ بالأساس</Text>},
     {
       from: T.a0,
       node: <SizeCaption i={0} chip={<span style={{opacity: ramp(t, T.a0Area)}}><Chip accent>≈ 1 م²</Chip></span>} />,
+    },
+    {
+      from: T.secret,
+      node: (
+        <Text size={66} weight={700}>
+          وسرّ السلسلة كلها… <span style={{color: C.accent}}>بسيط</span>
+        </Text>
+      ),
     },
     {
       from: T.foldHint,
@@ -211,25 +272,12 @@ const Caption: React.FC<{t: number}> = ({t}) => {
       from: T.famous,
       node: <Text size={72} weight={700}>وهنا المقاس الأشهر…</Text>,
     },
-    ...T.folds.slice(3).map((e, k) => ({
+    {from: T.folds[3], node: <SizeCaption i={4} chip={<Chip accent>الأشهر</Chip>} />},
+    {from: T.goOn, node: <Text size={72} weight={700}>ونكمل…</Text>},
+    ...T.folds.slice(4).map((e, k) => ({
       from: e,
-      node: <SizeCaption i={k + 4} chip={k === 0 ? <Chip accent>الأشهر</Chip> : <Chip><Dim>×½</Dim></Chip>} />,
+      node: <SizeCaption i={k + 5} chip={<Chip><Dim>×½</Dim></Chip>} />,
     })),
-    {
-      from: T.recap,
-      node: (
-        <div>
-          <Text size={66} weight={700}>
-            كل طيّة = <span style={{color: C.accent}}>نصف المساحة</span>
-          </Text>
-          <div style={{opacity: ramp(t, T.recapShape)}}>
-            <Text size={50} weight={400} color={C.muted}>
-              والشكل نفسه · النسبة <Dim>1 : 1.414</Dim>
-            </Text>
-          </div>
-        </div>
-      ),
-    },
   ];
   return (
     <>

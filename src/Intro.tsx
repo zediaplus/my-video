@@ -5,18 +5,18 @@ import {appear, Text, useTime} from './ui';
 
 export const Intro: React.FC = () => {
   const t = useTime();
-  const out = T.a0 - 0.4;
+  const out = T.basics - 0.35;
   return (
     <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', gap: 40}}>
-      <div style={appear(t, T.question + 0.3, out)}>
-        <Text size={104} weight={700}>
-          أي مقاس تحتاج؟
+      <div style={appear(t, T.question, out)}>
+        <Text size={92} weight={700}>
+          أي مقاس تحتاج للطباعة؟
         </Text>
       </div>
-      <div style={appear(t, T.byFolding, out)}>
+      <div style={appear(t, T.stepByStep, out)}>
         <Text size={58} weight={400} color={C.muted}>
-          خلّينا نرتّبها لك…{' '}
-          <span style={{color: C.accent, fontWeight: 700}}>بالطيّ</span>
+          خلّينا نرتّبها لك{' '}
+          <span style={{color: C.accent, fontWeight: 700}}>خطوة خطوة</span>
         </Text>
       </div>
     </AbsoluteFill>
