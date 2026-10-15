@@ -1,8 +1,9 @@
 # my-video — مقاسات الطباعة · تكوين
 
-Vertical video (1080×1920, 30fps, ~50s) built with Remotion from the Takwin print-sizes script.
+Vertical video (1080×1920, 30fps, 40s) built with Remotion from the Takwin print-sizes script.
 
-- `src/timing.ts` — every cue time (seconds), synced to `public/voiceover.mp3`. Edit here to re-sync.
+- `scripts/cut_voice.py` — cuts `public/voiceover.mp3` to `public/voiceover-cut.wav` (~39s) and writes `src/voice-map.json`.
+- `src/timing.ts` — every cue time in the original voiceover's seconds, remapped onto the cut voice. Edit here to re-sync.
 - `src/Sound.tsx` — voiceover + background SFX/music (`SFX_VOLUME`, `MUSIC_VOLUME` kept very low).
 - `scripts/make_sfx.py` — regenerates the synthesized SFX and music bed in `public/sfx`.
 

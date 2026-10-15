@@ -25,7 +25,10 @@ const pageBase: React.CSSProperties = {
 export const DocumentPage: React.FC<{u: number}> = ({u}) => (
   <div style={{...pageBase, gap: 2.2 * u}}>
     <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-      <Img src={staticFile('img/logo.png')} style={{height: 9 * u}} />
+      <div style={{display: 'flex', alignItems: 'center', gap: 1.5 * u}}>
+        <div style={{width: 6 * u, height: 6 * u, borderRadius: 1.2 * u, background: C.accent}} />
+        <div style={{fontSize: 3.4 * u, fontWeight: 700}}>شركة الأفق التجارية</div>
+      </div>
       <div style={{fontSize: 2.6 * u, color: C.muted}}>2026/10/13</div>
     </div>
     <div style={{height: 2, background: C.ink, opacity: 0.85}} />
@@ -205,8 +208,9 @@ export const OfferCard: React.FC<{u: number}> = ({u}) => (
 );
 
 // Round sticker used on the packaging
-export const Sticker: React.FC<{d: number; tone?: 'light' | 'dark' | 'accent'}> = ({d, tone = 'light'}) => {
+export const Sticker: React.FC<{d: number; tone?: 'light' | 'dark' | 'accent'; text: string}> = ({d, tone = 'light', text}) => {
   const bg = tone === 'dark' ? '#161616' : tone === 'accent' ? C.accent : '#fbfaf8';
+  const fg = tone === 'light' ? C.accent : '#fff';
   return (
     <div
       style={{
@@ -219,9 +223,11 @@ export const Sticker: React.FC<{d: number; tone?: 'light' | 'dark' | 'accent'}> 
         alignItems: 'center',
         justifyContent: 'center',
         border: tone === 'light' ? '2px solid #e8e4de' : 'none',
+        position: 'relative',
       }}
     >
-      <Img src={staticFile('img/logo.png')} style={{height: d * 0.55, filter: tone === 'light' ? 'none' : 'invert(1)'}} />
+      <div style={{position: 'absolute', width: d * 0.8, height: d * 0.8, borderRadius: '50%', border: `2px dashed ${fg}`, opacity: 0.6}} />
+      <div style={{fontFamily: FONT, fontWeight: 700, fontSize: d * 0.2, color: fg, direction: 'rtl', textAlign: 'center', lineHeight: 1.1}}>{text}</div>
     </div>
   );
 };

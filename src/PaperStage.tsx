@@ -92,7 +92,7 @@ export const PaperStage: React.FC = () => {
     ? interpolate(t, [starts[done], ends[done]], [0, 1], {easing: Easing.inOut(Easing.cubic)})
     : 0;
 
-  const enter = ramp(t, T.basics, 0.7);
+  const enter = ramp(t, T.a0 - 0.1, 0.5);
   const exit = ramp(t, T.stageOut, 0.5, Easing.in(Easing.cubic));
   const ghostCount = done + (folding ? 1 : 0);
 
@@ -138,7 +138,7 @@ export const PaperStage: React.FC = () => {
     paper = (
       <>
         <div style={{...paperStyle, ...sp, transform: `scale(${pop})`}} />
-        <SheetLabel i={done} r={sheet} accent={done === 4} opacity={done === 0 ? ramp(t, T.a0, 0.3) : done === 4 ? 1 - ramp(t, T.a4Docs, 0.3) : 1} />
+        <SheetLabel i={done} r={sheet} accent={done === 4} opacity={done === 0 ? 1 : done === 4 ? 1 - ramp(t, T.a4Docs, 0.3) : 1} />
       </>
     );
   }
@@ -242,18 +242,9 @@ const SizeCaption: React.FC<{i: number; chip?: React.ReactNode}> = ({i, chip}) =
 
 const Caption: React.FC<{t: number}> = ({t}) => {
   const caps: Cap[] = [
-    {from: T.basics, node: <Text size={72} weight={700}>نبدأ بالأساس</Text>},
     {
       from: T.a0,
       node: <SizeCaption i={0} chip={<span style={{opacity: ramp(t, T.a0Area)}}><Chip accent>≈ 1 م²</Chip></span>} />,
-    },
-    {
-      from: T.secret,
-      node: (
-        <Text size={66} weight={700}>
-          وسرّ السلسلة كلها… <span style={{color: C.accent}}>بسيط</span>
-        </Text>
-      ),
     },
     {
       from: T.foldHint,
@@ -273,7 +264,6 @@ const Caption: React.FC<{t: number}> = ({t}) => {
       node: <Text size={72} weight={700}>وهنا المقاس الأشهر…</Text>,
     },
     {from: T.folds[3], node: <SizeCaption i={4} chip={<Chip accent>الأشهر</Chip>} />},
-    {from: T.goOn, node: <Text size={72} weight={700}>ونكمل…</Text>},
     ...T.folds.slice(4).map((e, k) => ({
       from: e,
       node: <SizeCaption i={k + 5} chip={<Chip><Dim>×½</Dim></Chip>} />,

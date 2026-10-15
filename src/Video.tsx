@@ -2,7 +2,6 @@ import {AbsoluteFill, useCurrentFrame} from 'remotion';
 import {CardScene} from './CardScene';
 import {useFonts} from './Fonts';
 import {Intro} from './Intro';
-import {Logo} from './Logo';
 import {Outro} from './Outro';
 import {PaperStage} from './PaperStage';
 import {Sound} from './Sound';
@@ -20,10 +19,11 @@ export const TakwinSizes: React.FC = () => {
   useFonts();
   return (
     <AbsoluteFill style={{background: `radial-gradient(ellipse at 50% 45%, ${C.bgInner} 0%, ${C.bgOuter} 100%)`}}>
-      <Span from={0} to={T.basics + 0.2}>
+      <Span from={0} to={T.a0 + 0.2}>
         <Intro />
       </Span>
-      <Span from={T.basics - 0.1} to={T.stageOut + 0.6}>
+      <AbsoluteFill style={{transform: 'translateY(-130px)'}}>
+      <Span from={T.a0 - 0.1} to={T.stageOut + 0.6}>
         <PaperStage />
       </Span>
       <Span from={T.cards - 0.1} to={T.cardsOut + 0.4}>
@@ -32,10 +32,10 @@ export const TakwinSizes: React.FC = () => {
       <Span from={T.packaging - 0.1} to={T.stickersOut + 0.4}>
         <StickerScene />
       </Span>
+      </AbsoluteFill>
       <Span from={T.outro - 0.1} to={TOTAL_SECONDS}>
         <Outro />
       </Span>
-      <Logo />
       <Sound />
     </AbsoluteFill>
   );

@@ -16,17 +16,16 @@ export const StickerScene: React.FC = () => {
   const out = 1 - ramp(t, T.stickersOut, 0.3, Easing.in(Easing.cubic));
   const shown = T.stickerSizes.filter((s) => t >= s).length;
   const cur = Math.max(0, shown - 1);
-  const choose = ramp(t, T.chooseSize, 0.5);
-  const sizesOut = 1 - ramp(t, T.chooseSize - 0.1, 0.3);
 
   // packaging: centre stage first, then a row along the bottom
-  const toRow = ramp(t, T.stickerSizes[0] - 0.4, 0.5, Easing.inOut(Easing.cubic));
-  const pkgScale = interpolate(toRow, [0, 1], [1, 0.62]);
-  const pkgTop = interpolate(toRow, [0, 1], [640, 1490]);
+  const toRow = ramp(t, T.stickerSizes[0] - 0.35, 0.35, Easing.in(Easing.cubic));
+  const pkgScale = interpolate(toRow, [0, 1], [1, 0.85]);
+  const pkgTop = 640;
+  const photo = ramp(t, T.stickerSizes[0], 0.5);
   const packs = [
-    {el: KraftBox, tone: 'dark' as const, d: 120},
-    {el: Jar, tone: 'light' as const, d: 110},
-    {el: PaperBag, tone: 'accent' as const, d: 120},
+    {el: KraftBox, tone: 'dark' as const, d: 120, text: 'صُنع بحب'},
+    {el: Jar, tone: 'light' as const, d: 110, text: 'طبيعي ١٠٠٪'},
+    {el: PaperBag, tone: 'accent' as const, d: 120, text: 'شكرًا لك'},
   ];
 
   return (
@@ -36,7 +35,7 @@ export const StickerScene: React.FC = () => {
           وللـ<span style={{color: C.accent}}>عبوات</span>
         </Text>
       </div>
-      <div style={{position: 'absolute', top: 330, left: 0, right: 0, ...appear(t, T.stickers, T.chooseSize - 0.3)}}>
+      <div style={{position: 'absolute', top: 330, left: 0, right: 0, ...appear(t, T.stickers)}}>
         <Text size={76} weight={700}>
           استيكرات <span style={{color: C.accent}}>دائرية</span>
         </Text>
@@ -54,6 +53,7 @@ export const StickerScene: React.FC = () => {
           alignItems: 'flex-end',
           gap: 50,
           transform: `scale(${pkgScale})`,
+          opacity: 1 - toRow,
           transformOrigin: '50% 0',
           height: 330,
         }}
@@ -66,7 +66,7 @@ export const StickerScene: React.FC = () => {
             <div key={i} style={{transform: `translateY(${(1 - s) * 120}px)`, opacity: Math.min(1, s * 1.4)}}>
               <El>
                 <div style={{transform: `scale(${st}) rotate(${(1 - st) * 40}deg)`, opacity: st > 0 ? 1 : 0}}>
-                  <Sticker d={p.d} tone={p.tone} />
+                  <Sticker d={p.d} tone={p.tone} text={p.text} />
                 </div>
               </El>
             </div>
@@ -75,7 +75,7 @@ export const StickerScene: React.FC = () => {
       </div>
 
       {/* concentric sizes, biggest first in DOM so smaller ones sit on top */}
-      <AbsoluteFill style={{opacity: sizesOut}}>
+      <AbsoluteFill>
         {[...STICKERS_CM.keys()].reverse().map((i) => {
           const d = STICKERS_CM[i] * CM;
           const s = ramp(t, T.stickerSizes[i], 0.45, Easing.out(Easing.back(1.6)));
@@ -119,7 +119,7 @@ export const StickerScene: React.FC = () => {
             {fmt(STICKERS_CM[cur])} سم
           </div>
         )}
-        <div style={{position: 'absolute', top: 1260, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 18, direction: 'ltr'}}>
+        <div style={{position: 'absolute', top: 1060, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 18, direction: 'ltr'}}>
           {STICKERS_CM.map((cm, i) => {
             const on = ramp(t, T.stickerSizes[i], 0.25);
             const active = i === cur && shown > 0;
@@ -145,27 +145,22 @@ export const StickerScene: React.FC = () => {
         </div>
       </AbsoluteFill>
 
-      {/* «اختر الحجم المناسب لعبوتك»: real stickers photo */}
+      {/* real stickers photo alongside the sizes */}
       <div
         style={{
           position: 'absolute',
-          left: (1080 - 600) / 2,
-          top: 330,
-          width: 600,
-          height: 843,
+          left: (1080 - 760) / 2,
+          top: 1170,
+          width: 760,
+          height: 860,
           borderRadius: 28,
           overflow: 'hidden',
           boxShadow: '0 20px 50px rgba(0,0,0,0.18)',
-          opacity: choose,
-          transform: `scale(${0.9 + 0.1 * choose})`,
+          opacity: photo,
+          transform: `translateY(${(1 - photo) * 120}px)`,
         }}
       >
-        <Img src={staticFile('img/stickers-photo.jpg')} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 25%'}} />
-      </div>
-      <div style={{position: 'absolute', top: 1220, left: 0, right: 0, ...appear(t, T.chooseSize + 0.1)}}>
-        <Text size={60} weight={700}>
-          اختر الحجم المناسب <span style={{color: C.accent}}>لعبوتك</span>
-        </Text>
+        <Img src={staticFile('img/stickers-photo.jpg')} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 8%'}} />
       </div>
     </AbsoluteFill>
   );

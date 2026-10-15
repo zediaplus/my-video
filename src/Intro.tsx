@@ -5,7 +5,7 @@ import {appear, Text, useTime} from './ui';
 
 export const Intro: React.FC = () => {
   const t = useTime();
-  const out = T.basics - 0.35;
+  const out = T.a0 - 0.3;
   return (
     <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', gap: 40}}>
       <div style={appear(t, T.question, out)}>

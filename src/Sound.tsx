@@ -15,7 +15,7 @@ export const Sound: React.FC = () => {
   const total = TOTAL_SECONDS * FPS;
   return (
     <>
-      <Audio src={staticFile('voiceover.mp3')} />
+      <Audio src={staticFile('voiceover-cut.wav')} />
       <Audio
         src={staticFile('sfx/music.wav')}
         volume={(f) =>
@@ -28,7 +28,7 @@ export const Sound: React.FC = () => {
       />
 
       <Fx at={0} file="whoosh.wav" />
-      <Fx at={T.basics} file="bass.wav" gain={1.3} />
+      <Fx at={T.a0} file="bass.wav" gain={1.3} />
       {T.folds.map((e) => (
         <Fx key={`f${e}`} at={e - 0.5} file="fold.wav" />
       ))}
@@ -51,7 +51,6 @@ export const Sound: React.FC = () => {
       {T.stickerSizes.map((s, i) => (
         <Fx key={`s${s}`} at={s} file={`pop${i + 1}.wav`} gain={0.7} />
       ))}
-      <Fx at={T.chooseSize} file="ding.wav" gain={0.5} />
       <Fx at={T.outro} file="whoosh.wav" />
     </>
   );
